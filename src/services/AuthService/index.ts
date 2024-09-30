@@ -23,3 +23,19 @@ export const registerUser = async (userData: FieldValues) => {
     throw new Error(error);
   }
 };
+
+export const loginUser = async (userData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/auth/login", userData);
+
+    if (data.success) {
+      cookies().set("accessToken", data?.data?.accessToken);
+      cookies().set("refreshToken", data?.data?.refreshToken);
+    }
+
+    return data;
+  } catch (error: any) {
+    console.log("from registerUser", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};

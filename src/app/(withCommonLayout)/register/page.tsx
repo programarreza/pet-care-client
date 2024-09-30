@@ -31,7 +31,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-200px)] w-full flex-col items-center justify-center">
+    <div className="flex h-[calc(100vh-100px)] w-full flex-col items-center justify-center">
       <h3 className="my-2 text-2xl font-bold ">Register with Pet-Care</h3>
       <p>Welcome to pet-care</p>
 
@@ -86,7 +86,10 @@ const RegisterPage = () => {
         </PCForm>
 
         <div className="text-center">
-          Already have an account? <Link href={"/login"}>Login Now</Link>
+          Already have an account?{" "}
+          <Link className="underline" href={"/login"}>
+            Login Now
+          </Link>
         </div>
       </div>
     </div>
