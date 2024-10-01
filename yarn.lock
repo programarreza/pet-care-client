@@ -294,6 +294,20 @@
     "@react-aria/interactions" "3.21.3"
     "@react-aria/utils" "3.24.1"
 
+"@nextui-org/breadcrumbs@^2.0.13":
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/@nextui-org/breadcrumbs/-/breadcrumbs-2.0.13.tgz#09b036db83430ed7884cc08c756160de6be741ac"
+  integrity sha512-tdet47IBOwUaJL0PmxTuGH+ZI2nucyNwG3mX1OokfIXmq5HuMCGKaVFXaNP8mWb4Pii2bvtRqaqTfxmUb3kjGw==
+  dependencies:
+    "@nextui-org/react-utils" "2.0.17"
+    "@nextui-org/shared-icons" "2.0.9"
+    "@nextui-org/shared-utils" "2.0.8"
+    "@react-aria/breadcrumbs" "3.5.13"
+    "@react-aria/focus" "3.17.1"
+    "@react-aria/utils" "3.24.1"
+    "@react-types/breadcrumbs" "3.7.5"
+    "@react-types/shared" "3.23.1"
+
 "@nextui-org/button@2.0.38":
   version "2.0.38"
   resolved "https://registry.yarnpkg.com/@nextui-org/button/-/button-2.0.38.tgz#2756bb1d245e53bc3836d3bff3ffc6f0f03d52ac"
@@ -720,6 +734,18 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.1.1.tgz#1ec17e2edbec25c8306d424ecfbf13c7de1aaa31"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
+"@react-aria/breadcrumbs@3.5.13":
+  version "3.5.13"
+  resolved "https://registry.yarnpkg.com/@react-aria/breadcrumbs/-/breadcrumbs-3.5.13.tgz#2686f7f460f20d67fe5cdfe185e32e3e78186962"
+  integrity sha512-G1Gqf/P6kVdfs94ovwP18fTWuIxadIQgHsXS08JEVcFVYMjb9YjqnEBaohUxD1tq2WldMbYw53ahQblT4NTG+g==
+  dependencies:
+    "@react-aria/i18n" "^3.11.1"
+    "@react-aria/link" "^3.7.1"
+    "@react-aria/utils" "^3.24.1"
+    "@react-types/breadcrumbs" "^3.7.5"
+    "@react-types/shared" "^3.23.1"
+    "@swc/helpers" "^0.5.0"
+
 "@react-aria/button@3.9.5":
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/@react-aria/button/-/button-3.9.5.tgz#f0082f58394394f3d16fdf45de57b382748f3345"
@@ -880,6 +906,18 @@
     "@react-aria/utils" "^3.24.1"
     "@react-types/link" "^3.5.5"
     "@react-types/shared" "^3.23.1"
+    "@swc/helpers" "^0.5.0"
+
+"@react-aria/link@^3.7.1":
+  version "3.7.5"
+  resolved "https://registry.yarnpkg.com/@react-aria/link/-/link-3.7.5.tgz#3d05258cd6b2c1dd8b19ea520fec1238fd430eaf"
+  integrity sha512-j0F1BIdNoE7Tl+0KzzjbrmYuxt4aWAmDZDHvJKiYg71Jb1BAPz71eE1O1ybMoO04+OG/6HrRZTragfSQLAJ58A==
+  dependencies:
+    "@react-aria/focus" "^3.18.3"
+    "@react-aria/interactions" "^3.22.3"
+    "@react-aria/utils" "^3.25.3"
+    "@react-types/link" "^3.5.8"
+    "@react-types/shared" "^3.25.0"
     "@swc/helpers" "^0.5.0"
 
 "@react-aria/listbox@3.12.1":
@@ -1311,6 +1349,22 @@
   dependencies:
     "@swc/helpers" "^0.5.0"
 
+"@react-types/breadcrumbs@3.7.5":
+  version "3.7.5"
+  resolved "https://registry.yarnpkg.com/@react-types/breadcrumbs/-/breadcrumbs-3.7.5.tgz#72bc6e8881446864d7bf786f4667a2fbdda279f8"
+  integrity sha512-lV9IDYsMiu2TgdMIjEmsOE0YWwjb3jhUNK1DCZZfq6uWuiHLgyx2EncazJBUWSjHJ4ta32j7xTuXch+8Ai6u/A==
+  dependencies:
+    "@react-types/link" "^3.5.5"
+    "@react-types/shared" "^3.23.1"
+
+"@react-types/breadcrumbs@^3.7.5":
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/@react-types/breadcrumbs/-/breadcrumbs-3.7.8.tgz#edcde11c06bad19008a066fa0a91eb5fda9723f5"
+  integrity sha512-+BW2a+PrY8ArZ+pKecz13oJFrUAhthvXx17o3x0BhWUhRpAdtmTYt2hjw8zNanm2j0Kvgo1HYKgvtskCRxYcOA==
+  dependencies:
+    "@react-types/link" "^3.5.8"
+    "@react-types/shared" "^3.25.0"
+
 "@react-types/button@3.9.4":
   version "3.9.4"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.9.4.tgz#ec10452e870660d31db1994f6fe4abfe0c800814"
@@ -1360,6 +1414,13 @@
   integrity sha512-2WyaVmm1qr9UrSG3Dq6iz+2ziuVp+DH8CsYZ9CA6aNNb6U18Hxju3LTPb4a5gM0eC7W0mQGNBmrgGlAdDZEJOw==
   dependencies:
     "@react-types/shared" "^3.24.1"
+
+"@react-types/link@^3.5.8":
+  version "3.5.8"
+  resolved "https://registry.yarnpkg.com/@react-types/link/-/link-3.5.8.tgz#6a21ec7999cc1a5dbc71456b0739e27054114c3a"
+  integrity sha512-l/YGXddgAbLnIT7ekftXrK1D4n8NlLQwx0d4usyZpaxP1KwPzuwng20DxynamLc1atoKBqbUtZAnz32pe7vYgw==
+  dependencies:
+    "@react-types/shared" "^3.25.0"
 
 "@react-types/listbox@^3.4.9":
   version "3.5.1"
