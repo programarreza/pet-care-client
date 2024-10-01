@@ -3,6 +3,7 @@
 import axiosInstance from "@/src/lib/AxiosInstance";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
+import { jwtDecode } from "jwt-decode";
 
 export const registerUser = async (userData: FieldValues) => {
   try {
@@ -38,4 +39,51 @@ export const loginUser = async (userData: FieldValues) => {
     console.log("from registerUser", error?.response?.data?.message);
     throw new Error(error);
   }
+};
+
+export const getCurrentUser = async () => {
+  const accessToken = cookies().get("accessToken")?.value;
+
+  let decodedToken = null;
+
+  if (accessToken) {
+    decodedToken = await jwtDecode(accessToken);
+
+    return {
+      name: decodedToken?.name,
+      email: decodedToken?.email,
+      phone: decodedToken?.phone,
+      image: decodedToken?.image,
+      // status: decodedToken?.status,
+      // flowers: decodedToken?.flowers,
+      // flowing: decodedToken?.flowing,
+      role: decodedToken?.role,
+    };
+  }
+
+  return decodedToken;
+};
+
+export const getNewAccessToken = async () => {
+  try {
+    const refreshToken = cookies().get("refreshToken")?.value;
+
+    const res = await axiosInstance({
+      url: "/auth/refresh-token",
+      method: "POST",
+      withCredentials: true,
+      headers: {
+        cookies: `refreshToken=${refreshToken}`,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    throw new Error("Failed to get new access token");
+  }
+};
+
+export const logout = () => {
+  cookies().delete("accessToken");
+  cookies().delete("refreshToken");
 };

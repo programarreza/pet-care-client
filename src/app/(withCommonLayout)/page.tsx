@@ -1,4 +1,5 @@
 import ContentCard from "@/src/components/UI/Content/ContentCard";
+import { getCurrentUser } from "@/src/services/AuthService";
 import { getContents } from "@/src/services/Content";
 import { IContent } from "@/src/types";
 

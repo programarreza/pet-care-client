@@ -35,7 +35,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
               alt={content?.content}
               height={500}
               width={500}
-              className="mx-auto "
+              className="mx-auto"
             />
           </div>
         </div>
