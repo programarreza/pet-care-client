@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     <Container>
       <div className="flex gap-5">
         <DashboardSidebar />
-        <div className="w-full border"> {children}</div>
+        <div className="w-full "> {children}</div>
       </div>
     </Container>
   );

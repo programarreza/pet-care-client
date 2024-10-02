@@ -10,8 +10,8 @@ const DashboardSidebar = () => {
           <Link href={"/profile"} className="w-full">
             <Button className="w-full ">Profile</Button>
           </Link>
-          <Link href={"/create-post"} className="w-full">
-            <Button className="w-full ">Create Post</Button>
+          <Link href={"/create-content"} className="w-full">
+            <Button className="w-full ">Create Content</Button>
           </Link>
           <Link href={"/users"} className="w-full">
             <Button className="w-full ">Users</Button>
