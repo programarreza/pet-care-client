@@ -1,8 +1,18 @@
-import React from "react";
+import ContentCard from "@/src/components/UI/Content/ContentCard";
+import { getMyContents } from "@/src/services/Content";
+import { IContent } from "@/src/types";
 
-const MyContents = () => {
-	
-  return <div>this is MyContents</div>;
+const MyContents = async () => {
+  const {data: contents} = await getMyContents();
+  console.log(contents);
+
+  return (
+    <div>
+      {contents?.map((content: IContent, index: number) => (
+        <ContentCard key={index} content={content} />
+      ))}
+    </div>
+  );
 };
 
 export default MyContents;
