@@ -1,9 +1,8 @@
-"use server"
+"use server";
 
 import envConfig from "@/src/config/envConfig";
-import { getCurrentUser } from "../AuthService";
 import axiosInstance from "@/src/lib/AxiosInstance";
-import { FieldValues } from "react-hook-form";
+import { getCurrentUser } from "../AuthService";
 
 export const createContent = async (formData: FormData): Promise<any> => {
   try {

@@ -7,7 +7,7 @@ import CreateContentModal from "../../modals/CreateContentModal";
 
 const DashboardSidebar = () => {
   return (
-    <div className="w-1/4 h-[calc(100vh-70px)] border border-gray-200 sticky top-[70px] overflow-y-auto">
+    <div className=" h-[calc(100vh-70px)] border border-gray-200 sticky top-[70px] overflow-y-auto">
       <NextUINavbar maxWidth="xl" position="sticky">
         <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 w-full">
           <Link href={"/profile"} className="w-full">

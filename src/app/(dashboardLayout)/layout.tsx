@@ -5,9 +5,11 @@ import { ReactNode } from "react";
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Container>
-      <div className="flex gap-5">
-        <DashboardSidebar />
-        <div className="w-full "> {children}</div>
+      <div className="flex gap-5 ">
+        <div className="w-1/4 border ">
+          <DashboardSidebar />
+        </div>
+        <div className="border w-9/12"> {children}</div>
       </div>
     </Container>
   );

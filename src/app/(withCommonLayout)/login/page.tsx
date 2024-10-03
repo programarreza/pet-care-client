@@ -17,8 +17,6 @@ const LoginPage = () => {
       email: data.email,
       password: data.password,
     };
-
-    console.log(userData);
     handleUserLogin(userData);
   };
 
@@ -54,7 +52,9 @@ const LoginPage = () => {
 
         <div className="text-center">
           Don't already have an account?{" "}
-          <Link className="underline" href={"/register"}>Register Now</Link>
+          <Link className="underline" href={"/register"}>
+            Register Now
+          </Link>
         </div>
       </div>
     </div>

@@ -17,8 +17,8 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="relative">
-        <div className="border rounded-md h-44 bg-gray-900"></div>
+      <div className="relative mt-[70px]">
+        <div className="border rounded-md h-32 bg-gray-900"></div>
         <div className="absolute -mt-24 ml-5">
           <Avatar
             isBordered

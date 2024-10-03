@@ -1,20 +1,27 @@
+"use client";
+
 import { useUser } from "@/src/context/user.provider";
+import { useCreateContent } from "@/src/hooks/content.hook";
 import { Button } from "@nextui-org/button";
-import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
+import { Input } from "@nextui-org/input";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import PCForm from "../form/PCForm";
 import PCSelect from "../form/PCSelect";
-import PCTextArea from "../form/PCTextArea";
 import PCModal from "./PXModel";
-import { Input } from "@nextui-org/input";
-import { useCreateContent } from "@/src/hooks/content.hook";
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateContentModal = () => {
   const { user } = useUser();
+  const [value, setValue] = useState("");
 
-  const { mutate: handleCreateContent, isPending: CreateContentPending } =
-    useCreateContent();
-
-  console.log(user);
+  const { mutate: handleCreateContent, isPending } = useCreateContent();
 
   const contentTypeOptions =
     user?.role == "ADMIN"
@@ -33,14 +40,13 @@ const CreateContentModal = () => {
     const formData = new FormData();
     const contentData = {
       user: user?.id,
-      content: data.content,
+      content: value,
       category: data.category,
       contentType: data.contentType,
     };
 
     formData.append("data", JSON.stringify(contentData));
     formData.append("image", data.image);
-    console.log(contentData);
 
     handleCreateContent(formData);
   };
@@ -53,7 +59,15 @@ const CreateContentModal = () => {
     >
       <PCForm onSubmit={onSubmit}>
         <div className="space-y-2">
-          <PCTextArea label="Content" name="content" />
+          <ReactQuill
+            theme="snow"
+            value={value}
+            onChange={setValue}
+            style={{ height: "170px" }}
+            className="mb-[50px]"
+          />
+
+          {/* <PCTextArea label="Content" name="content" /> */}
           <PCSelect
             options={categoriesOptions}
             label="Select Category"
@@ -81,8 +95,7 @@ const CreateContentModal = () => {
         </div>
         <div>
           <Button className="w-full flex-1 mt-2" type="submit">
-            {/* {isPending ? "Sending...." : "Send"} */}
-            Post Now
+            {isPending ? "Sending...." : "Post Now"}
           </Button>
         </div>
       </PCForm>
