@@ -48,3 +48,13 @@ export interface IUser {
   updatedAt: string;
   __v: number;
 }
+
+export interface IComment {
+  _id: string;
+  comment: string;
+  content: string;
+  user: IUser;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}

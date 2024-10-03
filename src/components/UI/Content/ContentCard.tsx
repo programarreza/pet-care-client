@@ -3,10 +3,11 @@ import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { format } from "date-fns";
+import CommentCard from "./CommentCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
-    <div className="text-white shadow-lg rounded-lg overflow-hidden">
+    <div className="text-white shadow-lg rounded-lg overflow-hidden border mb-6">
       <div className="px-4 py-2">
         {/* User info */}
         <div className="flex justify-between items-center">
@@ -46,7 +47,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
         </div>
 
         {/* Like & comments area */}
-        <div className="flex justify-between items-center border-t py-4 px-2">
+        <div className="flex justify-between items-center border-y py-4 ">
           <div className="flex gap-2">
             <Button color="primary" variant="shadow">
               UpVote
@@ -63,6 +64,9 @@ const ContentCard = ({ content }: { content: IContent }) => {
           </div>
         </div>
       </div>
+
+      {/* show all comments */}
+      <CommentCard contentId={content?._id}/>
     </div>
   );
 };

@@ -1,10 +1,16 @@
-import axiosInstance from "@/src/lib/AxiosInstance";
+// "use server";
 
-export const getAllUsers = async () => {
-  try {
-    const { data } = await axiosInstance.get(`/users`);
-    return data;
-  } catch (error: any) {
-    throw new Error(error.message);
-  }
-};
+// import axiosInstance from "@/src/lib/AxiosInstance";
+
+// export const getAllUsers = async () => {
+//   try {
+//     const res = await axiosInstance.get("/users");
+
+//     console.log("API Response:", res.data);
+
+//     return res.data; // Return only the data from the response
+//   } catch (error) {
+//     console.error("Failed to fetch data:", error);
+//     throw new Error("Failed to fetch data");
+//   }
+// };
