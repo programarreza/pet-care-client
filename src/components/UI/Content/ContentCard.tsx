@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { format } from "date-fns";
 import CommentCard from "./CommentCard";
+import CreateComment from "../Comment/createComment";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
@@ -65,8 +66,11 @@ const ContentCard = ({ content }: { content: IContent }) => {
         </div>
       </div>
 
+      {/* create comment */}
+      <CreateComment contentId={content?._id} />
+
       {/* show all comments */}
-      <CommentCard contentId={content?._id}/>
+      <CommentCard contentId={content?._id} />
     </div>
   );
 };
