@@ -32,6 +32,7 @@ export interface IContent {
 }
 
 export interface IUser {
+  id?: string;
   _id: string;
   name: string;
   email: string;
@@ -42,7 +43,6 @@ export interface IUser {
   status: string;
   flowers: any[];
   flowing: any[];
-  isBlock: boolean;
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;

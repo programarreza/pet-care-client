@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@nextui-org/button";
 import { NavbarContent, Navbar as NextUINavbar } from "@nextui-org/navbar";
 import Link from "next/link";
+import CreateContentModal from "../../modals/CreateContentModal";
 
 const DashboardSidebar = () => {
   return (
@@ -10,9 +13,9 @@ const DashboardSidebar = () => {
           <Link href={"/profile"} className="w-full">
             <Button className="w-full ">Profile</Button>
           </Link>
-          <Link href={"/create-content"} className="w-full">
-            <Button className="w-full ">Create Content</Button>
-          </Link>
+          <div className="w-full bg-[#39393F] text-center rounded-xl">
+            <CreateContentModal />
+          </div>
           <Link href={"/users"} className="w-full">
             <Button className="w-full ">Users</Button>
           </Link>

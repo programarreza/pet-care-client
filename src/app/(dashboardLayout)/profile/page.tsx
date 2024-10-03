@@ -4,7 +4,6 @@ import { IContent } from "@/src/types";
 
 const MyContents = async () => {
   const {data: contents} = await getMyContents();
-  console.log(contents);
 
   return (
     <div>

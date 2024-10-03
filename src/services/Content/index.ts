@@ -1,6 +1,27 @@
+"use server"
+
 import envConfig from "@/src/config/envConfig";
 import { getCurrentUser } from "../AuthService";
 import axiosInstance from "@/src/lib/AxiosInstance";
+import { FieldValues } from "react-hook-form";
+
+export const createContent = async (formData: FormData): Promise<any> => {
+  try {
+    const { data } = await axiosInstance.post(
+      "/contents/create-content",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
 
 export const getContents = async () => {
   let fetchOptions = {};
