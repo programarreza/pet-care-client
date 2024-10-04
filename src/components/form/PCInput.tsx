@@ -4,7 +4,9 @@ import { IInput } from "@/src/types";
 import { Input } from "@nextui-org/input";
 import { useFormContext } from "react-hook-form";
 
-interface IProps extends IInput {}
+interface IProps extends IInput {
+  defaultValue?: string;
+}
 
 const PCInput = ({
   variant = "bordered",
@@ -14,6 +16,7 @@ const PCInput = ({
   label,
   placeholder,
   name,
+  defaultValue = "",
 }: IProps) => {
   const {
     register,
@@ -32,6 +35,7 @@ const PCInput = ({
       label={label}
       placeholder={placeholder}
       name={name}
+      defaultValue={defaultValue}
     />
   );
 };

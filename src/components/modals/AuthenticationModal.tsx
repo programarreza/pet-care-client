@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import PCModal from "./PXModel";
+import PCModal from "./PCModel";
 
 interface IProps {
   id: string;

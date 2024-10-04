@@ -4,18 +4,13 @@ import { useUser } from "@/src/context/user.provider";
 import { useCreateContent } from "@/src/hooks/content.hook";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
-import {
-  Controller,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
-import PCForm from "../form/PCForm";
-import PCSelect from "../form/PCSelect";
-import PCModal from "./PXModel";
-import React, { useState } from "react";
+import { useState } from "react";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import PCForm from "../form/PCForm";
+import PCSelect from "../form/PCSelect";
+import PCModal from "./PCModel";
 
 const CreateContentModal = () => {
   const { user } = useUser();

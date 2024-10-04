@@ -10,6 +10,14 @@ import {
   TableRow,
 } from "@nextui-org/table";
 
+type UserStatus =
+  | "success"
+  | "danger"
+  | "warning"
+  | "default"
+  | "primary"
+  | "secondary";
+
 const rows = [
   { name: "NAME", uid: "name" },
   { name: "ROLE", uid: "role" },
@@ -23,7 +31,7 @@ const columns = [
     name: "Tony Reichert",
     role: "CEO",
     team: "Management",
-    status: "active",
+    status: "active" as UserStatus,
     age: "29",
     avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
     email: "tony.reichert@example.com",
@@ -33,7 +41,7 @@ const columns = [
     name: "Zoey Lang",
     role: "Technical Lead",
     team: "Development",
-    status: "paused",
+    status: "paused" as UserStatus,
     age: "25",
     avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
     email: "zoey.lang@example.com",
@@ -43,7 +51,7 @@ const columns = [
     name: "Jane Fisher",
     role: "Senior Developer",
     team: "Development",
-    status: "active",
+    status: "active" as UserStatus,
     age: "22",
     avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
     email: "jane.fisher@example.com",
@@ -53,7 +61,7 @@ const columns = [
     name: "William Howard",
     role: "Community Manager",
     team: "Marketing",
-    status: "vacation",
+    status: "vacation" as UserStatus,
     age: "28",
     avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
     email: "william.howard@example.com",
@@ -63,14 +71,14 @@ const columns = [
     name: "Kristen Copper",
     role: "Sales Manager",
     team: "Sales",
-    status: "active",
+    status: "active" as UserStatus,
     age: "24",
     avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
     email: "kristen.cooper@example.com",
   },
 ];
 
-const statusColorMap = {
+const statusColorMap: Record<UserStatus, string> = {
   active: "success",
   paused: "danger",
   vacation: "warning",
@@ -92,7 +100,7 @@ export default function Users() {
             <TableCell>
               <Chip
                 className="capitalize"
-                color={statusColorMap[column.status]} // Correctly get the color for the status
+                color={statusColorMap[column.status]}
                 size="sm"
                 variant="flat"
               >

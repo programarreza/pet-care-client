@@ -40,3 +40,35 @@ export const getComments = async (contentId: string) => {
 
   return res.json();
 };
+
+export const deleteComment = async (commentId: string) => {
+  try {
+    const { data } = await axiosInstance.delete(`/comments/${commentId}`);
+
+    revalidateTag("comments");
+
+    return data;
+  } catch (error: any) {
+    console.log("from deleteComment", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};
+
+export const updateComment = async (
+  commentId: string,
+  updateComment: FieldValues
+) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/comments/${commentId}`,
+      updateComment
+    );
+
+    revalidateTag("comments");
+
+    return data;
+  } catch (error: any) {
+    console.log("from updateComment", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};
