@@ -1,21 +1,19 @@
 "use client";
 
 import { useDeleteComment, useUpdateComment } from "@/src/hooks/comment.hook";
-import { toast } from "sonner";
-import PCModal from "../../modals/PCModel";
-import Swal from "sweetalert2";
 import { Button } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
-  ModalFooter,
+  useDisclosure,
 } from "@nextui-org/modal";
-import PCInput from "../../form/PCInput";
-import PCForm from "../../form/PCForm";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
+import PCForm from "../../form/PCForm";
+import PCInput from "../../form/PCInput";
 
 interface IProps {
   commentId: string;

@@ -61,8 +61,6 @@ const CreateContentModal = () => {
             style={{ height: "170px" }}
             className="mb-[50px]"
           />
-
-          {/* <PCTextArea label="Content" name="content" /> */}
           <PCSelect
             options={categoriesOptions}
             label="Select Category"

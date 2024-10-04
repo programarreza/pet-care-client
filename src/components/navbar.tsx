@@ -13,6 +13,7 @@ import NavbarDropdown from "./UI/NavbarDropdown";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { useUser } from "../context/user.provider";
+import CreateContentModal from "./modals/CreateContentModal";
 
 export const Navbar = () => {
   const { user } = useUser();
@@ -61,9 +62,13 @@ export const Navbar = () => {
       </NavbarContent>
       <NavbarBrand as="li" className=" max-w-fit">
         {user?.email ? (
-          <NextLink className="flex justify-start items-center" href="/">
-            <NavbarDropdown />
-          </NextLink>
+          <div className="flex gap-4 ">
+            <div className="border rounded-lg"><CreateContentModal /></div>
+
+            <NextLink className="flex justify-start items-center" href="/">
+              <NavbarDropdown />
+            </NextLink>
+          </div>
         ) : (
           <Link href="/login">
             <Button>Login</Button>

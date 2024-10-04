@@ -59,6 +59,7 @@ export const getCurrentUser = async () => {
       flowers: decodedToken?.flowers,
       flowing: decodedToken?.flowing,
       role: decodedToken?.role,
+      address: decodedToken?.address,
     };
   }
 

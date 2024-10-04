@@ -43,10 +43,10 @@ export interface IUser {
   status: string;
   flowers: any[];
   flowing: any[];
-  isDeleted: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  isDeleted?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
 }
 
 export interface IComment {
