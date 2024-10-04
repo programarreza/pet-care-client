@@ -22,7 +22,6 @@ interface IProps {
 const UpdateProfile = ({ user }: IProps) => {
   const { mutate: updateUser } = useUpdateUser();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  console.log(user);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const userData = {

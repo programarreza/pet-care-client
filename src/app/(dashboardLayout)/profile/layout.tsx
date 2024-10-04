@@ -1,4 +1,6 @@
 import Container from "@/src/components/Container";
+import CreateContentModal from "@/src/components/modals/CreateContentModal";
+import NavbarDropdown from "@/src/components/UI/NavbarDropdown";
 import { ReactNode } from "react";
 
 const ProfileLayout = ({
@@ -10,6 +12,13 @@ const ProfileLayout = ({
 }) => {
   return (
     <Container>
+      <div className="flex gap-4  justify-end">
+        <div className="border rounded-lg">
+          <CreateContentModal />
+        </div>
+
+        <NavbarDropdown />
+      </div>
       {profile} {/* profile fixed */}
       <div>{children}</div> {/* like --> contents , followed, followers page*/}
     </Container>

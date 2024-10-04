@@ -56,8 +56,8 @@ export const getCurrentUser = async () => {
       phone: decodedToken?.phone,
       image: decodedToken?.image,
       status: decodedToken?.status,
-      flowers: decodedToken?.flowers,
-      flowing: decodedToken?.flowing,
+      followers: decodedToken?.followers,
+      following: decodedToken?.following,
       role: decodedToken?.role,
       address: decodedToken?.address,
     };

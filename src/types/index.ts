@@ -41,9 +41,10 @@ export interface IUser {
   role: string;
   image: string;
   status: string;
-  flowers: any[];
-  flowing: any[];
+  followers: any[];
+  following: any[];
   isDeleted?: boolean;
+  isBlock?: boolean;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;

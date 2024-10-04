@@ -13,7 +13,8 @@ const Profile = () => {
   const { user } = useUser();
   const [currentPage, setCurrentPage] = useState("contents");
   const { data: userInfo } = useGetUserProfile(user?.email as string);
-  console.log("from profile", userInfo);
+
+  console.log(userInfo)
 
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
@@ -21,7 +22,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="relative mt-[70px]">
+      <div className="relative mt-[30px]">
         <div className="border rounded-md h-32 bg-gray-900"></div>
         <div className="absolute -mt-24 ml-5">
           <Avatar
