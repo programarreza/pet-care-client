@@ -5,6 +5,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 import CommentCard from "./CommentCard";
 import CreateComment from "../Comment/createComment";
+import premiumIcon from "../../../assets/premium.png";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
@@ -22,8 +23,18 @@ const ContentCard = ({ content }: { content: IContent }) => {
             </div>
           </div>
 
-          <div className="text-sm ">
-            <p>{content?.status || "Flow / Flowing"}</p>
+          <div className="text-sm">
+            <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p>
+            <div className=" ml-4">
+              {content?.contentType === "PREMIUM" && (
+                <Image
+                  src={premiumIcon}
+                  alt="premium icon"
+                  height={40}
+                  width={40}
+                />
+              )}
+            </div>
           </div>
         </div>
 

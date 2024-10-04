@@ -33,7 +33,10 @@ const CommentCard = async ({ contentId }: { contentId: string }) => {
             </div>
           </div>
 
-          <CommentCardAction commentId={comment?._id} comment={comment?.comment}/>
+          <CommentCardAction
+            commentId={comment?._id}
+            comment={comment?.comment}
+          />
         </div>
       ))}
     </div>

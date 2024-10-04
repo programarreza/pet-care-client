@@ -70,12 +70,11 @@ const CommentCardAction = ({ commentId, comment }: IProps) => {
       comment: data.updateComment,
     };
 
-    // Ensure you're calling the mutate function correctly
     updateComment(
-      { commentId, updateComment: commentData }, // Pass both as a single object
+      { commentId, updateComment: commentData },
       {
         onSuccess: () => {
-          onOpenChange(); // Close the modal after success
+          onOpenChange();
         },
         onError: (error) => {
           toast.error(`Failed to update comment: ${error.message}`);
@@ -85,7 +84,7 @@ const CommentCardAction = ({ commentId, comment }: IProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 justify-center items-center">
       <button className="" onClick={() => handleDelete()} disabled={isPending}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
