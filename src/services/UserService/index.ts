@@ -8,7 +8,7 @@ export const updateUser = async (userId: string, userData: FieldValues) => {
   try {
     const { data } = await axiosInstance.patch(`/users/${userId}`, userData);
 
-    //   revalidateTag("users");
+    revalidateTag("userProfile");
 
     return data;
   } catch (error: any) {
@@ -16,3 +16,15 @@ export const updateUser = async (userId: string, userData: FieldValues) => {
     throw new Error(error);
   }
 };
+
+export const getUserProfile = async (email: string) => {
+  try {
+    const { data } = await axiosInstance.get(`/users/me?email=${email}`);
+    
+    return data?.data;
+  } catch (error: any) {
+    console.log("from updateUser", error?.response?.data?.message);
+    throw new Error(error); 
+  }
+};
+

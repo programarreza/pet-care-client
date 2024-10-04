@@ -31,8 +31,7 @@ const UpdateProfile = ({ user }: IProps) => {
       address: data.address,
     };
 
-    const userId = user?.id as string;
-    console.log(userData, userId);
+    const userId = user?._id as string;
 
     updateUser(
       { userId, userData },
