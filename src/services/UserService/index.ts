@@ -104,3 +104,23 @@ export const blockStatusChange = async (
     throw new Error(error);
   }
 };
+
+export const roleStatusChange = async (
+  userId: string,
+  statusData: string
+) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/users/change-role/${userId}`,
+      statusData
+    );
+
+    revalidateTag("users");
+    revalidateTag("userProfile");
+
+    return data;
+  } catch (error: any) {
+    console.log("from roleStatusChange", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};

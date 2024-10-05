@@ -1,6 +1,10 @@
 "use client";
 
-import { useBlockStatusChange } from "@/src/hooks/user.hook";
+import { useUser } from "@/src/context/user.provider";
+import {
+  useBlockStatusChange,
+  useRoleStatusChange,
+} from "@/src/hooks/user.hook";
 import { IUser } from "@/src/types";
 import { Button } from "@nextui-org/button";
 import { Chip } from "@nextui-org/chip";
@@ -12,12 +16,14 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
+import { any } from "zod";
 
 const rows = [
   { name: "NAME", uid: "name" },
   { name: "ROLE", uid: "role" },
   { name: "STATUS", uid: "status" },
   { name: "ACTIVITY", uid: "activity" },
+  { name: "ACTIONS", uid: "actions" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
@@ -33,6 +39,8 @@ interface IUserCardProps {
 
 export default function UserCard({ users }: IUserCardProps) {
   const { mutate: blockStatusChange } = useBlockStatusChange();
+  const { mutate: roleStatusChange } = useRoleStatusChange();
+  const { user: userInfo } = useUser();
 
   const handleStatusChange = (userId: string, isBlock: boolean) => {
     // Toggle block status based on the current state
@@ -43,6 +51,26 @@ export default function UserCard({ users }: IUserCardProps) {
     };
 
     blockStatusChange({ userId, statusData });
+  };
+
+  const handleRoleChange = (userId: string, role: string) => {
+    // Toggle block status based on the current state
+    let status;
+
+    if (role === "USER") {
+      status = "ADMIN";
+    } else {
+      status = "USER";
+    }
+
+    const statusData = {
+      role: status,
+    };
+
+    console.log(statusData);
+    console.log(userId);
+
+    roleStatusChange({ userId, statusData });
   };
 
   return (
@@ -68,18 +96,59 @@ export default function UserCard({ users }: IUserCardProps) {
               </Chip>
             </TableCell>
             <TableCell>
-              <div
-                onClick={() =>
-                  handleStatusChange(user?._id, user.isBlock as boolean)
-                }
-                className="cursor-pointer"
-              >
-                {user?.isBlock ? (
-                  <button className="bg-[#27272A] px-3 py-1 rounded-md">UnBlock</button>
-                ) : (
-                  <button className="bg-[#27272A] px-3 py-1 rounded-md">Block Now</button>
-                )}
-              </div>
+              {userInfo?.id === user?._id ? (
+                <Button
+                  isDisabled
+                  size="sm"
+                  className="bg-[#27272A] px-3 py-1 rounded-md"
+                >
+                  Not Access
+                </Button>
+              ) : (
+                <div
+                  onClick={() =>
+                    handleStatusChange(user?._id, user.isBlock as boolean)
+                  }
+                  className="cursor-pointer"
+                >
+                  {user?.isBlock ? (
+                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                      UnBlock
+                    </button>
+                  ) : (
+                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                      Block Now
+                    </button>
+                  )}
+                </div>
+              )}
+            </TableCell>
+
+            <TableCell>
+              {userInfo?.id === user?._id ? (
+                <Button
+                  isDisabled
+                  size="sm"
+                  className="bg-[#27272A] px-3 py-1 rounded-md"
+                >
+                  Not Access
+                </Button>
+              ) : (
+                <div
+                  onClick={() => handleRoleChange(user?._id, user?.role)}
+                  className="cursor-pointer"
+                >
+                  {user?.role === "ADMIN" ? (
+                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                      Make User
+                    </button>
+                  ) : (
+                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                      Make Admin
+                    </button>
+                  )}
+                </div>
+              )}
             </TableCell>
           </TableRow>
         ))}

@@ -6,6 +6,7 @@ import {
   blockStatusChange,
   follow,
   getUserProfile,
+  roleStatusChange,
   unFollow,
   updateUser,
 } from "../services/UserService";
@@ -82,6 +83,27 @@ export const useBlockStatusChange = () => {
     },
     onSuccess: () => {
       toast.success("User status change!");
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to status change: ${error.message}`);
+    },
+  });
+};
+
+export const useRoleStatusChange = () => {
+  return useMutation({
+    mutationKey: ["USER_ROLE_STATUS_CHANGE"],
+    mutationFn: async ({
+      userId,
+      statusData,
+    }: {
+      userId: string;
+      statusData: string;
+    }) => {
+      return await roleStatusChange(userId, statusData);
+    },
+    onSuccess: () => {
+      toast.success("User role change!");
     },
     onError: (error: any) => {
       toast.error(`Failed to status change: ${error.message}`);
