@@ -1,11 +1,12 @@
 import { IContent } from "@/src/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
-import Image from "next/image";
 import { format } from "date-fns";
-import CommentCard from "./CommentCard";
-import CreateComment from "../Comment/createComment";
+import Image from "next/image";
 import premiumIcon from "../../../assets/premium.png";
+import CreateComment from "../Comment/createComment";
+import FollowCard from "../Follow/FollowCard";
+import CommentCard from "./CommentCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
@@ -25,6 +26,10 @@ const ContentCard = ({ content }: { content: IContent }) => {
 
           <div className="text-sm">
             <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p>
+
+            {/* follow/unFollow */}
+            <FollowCard content={content} />
+
             <div className=" ml-4">
               {content?.contentType === "PREMIUM" && (
                 <Image

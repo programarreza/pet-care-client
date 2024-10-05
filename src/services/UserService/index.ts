@@ -20,7 +20,18 @@ export const updateUser = async (userId: string, userData: FieldValues) => {
 
 export const getUserProfile = async (email: string) => {
   try {
-    const { data } = await axiosInstance.get(`/users/me?email=${email}`);
+    let fetchOptions = {};
+
+    fetchOptions = {
+      next: {
+        tags: ["userProfile"],
+      },
+    };
+
+    const { data } = await axiosInstance.get(
+      `/users/me?email=${email}`,
+      fetchOptions
+    );
 
     return data?.data;
   } catch (error: any) {
@@ -44,4 +55,32 @@ export const getUsers = async () => {
   }
 
   return res.json();
+};
+
+export const follow = async (followData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/users/follow", followData);
+
+    revalidateTag("users");
+    revalidateTag("userProfile");
+
+    return data;
+  } catch (error: any) {
+    console.log("from follow", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};
+
+export const unFollow = async (unFollowData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/users/un-follow", unFollowData);
+
+    revalidateTag("users");
+    revalidateTag("userProfile");
+
+    return data;
+  } catch (error: any) {
+    console.log("from follow", error?.response?.data?.message);
+    throw new Error(error);
+  }
 };

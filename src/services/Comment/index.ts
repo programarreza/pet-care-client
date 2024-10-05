@@ -22,9 +22,9 @@ export const createComment = async (commentData: FieldValues) => {
 };
 
 export const getComments = async (contentId: string) => {
-  let fetchOptions = {};
+  // let fetchOptions = {};
 
-  fetchOptions = {
+  const fetchOptions = {
     next: {
       tags: ["comments"],
     },
