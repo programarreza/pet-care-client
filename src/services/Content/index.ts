@@ -3,6 +3,8 @@
 import envConfig from "@/src/config/envConfig";
 import axiosInstance from "@/src/lib/AxiosInstance";
 import { getCurrentUser } from "../AuthService";
+import { FieldValues } from "react-hook-form";
+import { revalidateTag } from "next/cache";
 
 export const createContent = async (formData: FormData): Promise<any> => {
   try {
@@ -16,6 +18,8 @@ export const createContent = async (formData: FormData): Promise<any> => {
       }
     );
 
+    revalidateTag("contents");
+
     return data;
   } catch (error: any) {
     throw new Error(error.message);
@@ -26,6 +30,9 @@ export const getContents = async () => {
   let fetchOptions = {};
 
   fetchOptions = {
+    next: {
+      tags: ["contents"],
+    },
     cache: "no-store",
   };
 
@@ -40,6 +47,14 @@ export const getContents = async () => {
 export const getMyContents = async () => {
   const user = await getCurrentUser();
 
+  let fetchOptions = {};
+
+  fetchOptions = {
+    next: {
+      tags: ["myContents"],
+    },
+  };
+
   // Ensure the user data is available
   if (!user || !user.email) {
     throw new Error("User not logged in or email not found");
@@ -47,10 +62,28 @@ export const getMyContents = async () => {
 
   try {
     const { data } = await axiosInstance.get(
-      `/contents/my-contents?email=${user?.email}`
+      `/contents/my-contents?email=${user?.email}`,
+      fetchOptions
     );
     return data;
   } catch (error: any) {
     throw new Error(error.message);
+  }
+};
+
+export const Upvote = async (userId: string, contentId: string) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/contents/upvote/${contentId}`,
+      { userId }
+    );
+
+    revalidateTag("contents");
+    revalidateTag("myContents");
+
+    return data;
+  } catch (error: any) {
+    console.log("from Upvote", error?.response?.data?.message);
+    throw new Error(error);
   }
 };

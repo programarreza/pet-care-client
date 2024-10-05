@@ -42,35 +42,27 @@ export default function UserCard({ users }: IUserCardProps) {
   const { mutate: roleStatusChange } = useRoleStatusChange();
   const { user: userInfo } = useUser();
 
-  const handleStatusChange = (userId: string, isBlock: boolean) => {
+  const handleStatusChange = (userId: string, currentIsBlock: boolean) => {
     // Toggle block status based on the current state
-    let blockStatus = !isBlock;
+    let blockStatus = !currentIsBlock;
+    const isBlock = blockStatus;
 
-    const statusData = {
-      isBlock: blockStatus,
-    };
-
-    blockStatusChange({ userId, statusData });
+    blockStatusChange({ userId, isBlock });
   };
 
-  const handleRoleChange = (userId: string, role: string) => {
+  const handleRoleChange = (userId: string, currentRole: string) => {
     // Toggle block status based on the current state
     let status;
 
-    if (role === "USER") {
+    if (currentRole === "USER") {
       status = "ADMIN";
     } else {
       status = "USER";
     }
 
-    const statusData = {
-      role: status,
-    };
+    const role = status;
 
-    console.log(statusData);
-    console.log(userId);
-
-    roleStatusChange({ userId, statusData });
+    roleStatusChange({ userId, role });
   };
 
   return (

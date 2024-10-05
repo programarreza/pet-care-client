@@ -7,6 +7,7 @@ import premiumIcon from "../../../assets/premium.png";
 import CreateComment from "../Comment/createComment";
 import FollowCard from "../Follow/FollowCard";
 import CommentCard from "./CommentCard";
+import VoteCard from "./VoteCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
@@ -63,15 +64,10 @@ const ContentCard = ({ content }: { content: IContent }) => {
           )}
         </div>
 
-        {/* Like & comments area */}
+        {/* voteCard or Like & comments area */}
         <div className="flex justify-between items-center border-y py-4 ">
-          <div className="flex gap-2">
-            <Button color="primary" variant="shadow">
-              UpVote
-            </Button>
-            <Button color="secondary" variant="shadow">
-              DownVote
-            </Button>
+          <div>
+            <VoteCard totalVote={content?.totalVote} contentId={content?._id}/>
           </div>
 
           <div>

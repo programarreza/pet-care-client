@@ -24,6 +24,7 @@ export interface IContent {
   contentType: string;
   upVote: any[];
   downVote: any[];
+  totalVote: number;
   status: string;
   isDeleted: boolean;
   createdAt: string;

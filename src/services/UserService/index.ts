@@ -85,14 +85,11 @@ export const unFollow = async (unFollowData: FieldValues) => {
   }
 };
 
-export const blockStatusChange = async (
-  userId: string,
-  statusData: boolean
-) => {
+export const blockStatusChange = async (userId: string, isBlock: boolean) => {
   try {
     const { data } = await axiosInstance.patch(
       `/users/block-status/${userId}`,
-      statusData
+      { isBlock }
     );
 
     revalidateTag("users");
@@ -105,15 +102,11 @@ export const blockStatusChange = async (
   }
 };
 
-export const roleStatusChange = async (
-  userId: string,
-  statusData: string
-) => {
+export const roleStatusChange = async (userId: string, role: string) => {
   try {
-    const { data } = await axiosInstance.patch(
-      `/users/change-role/${userId}`,
-      statusData
-    );
+    const { data } = await axiosInstance.patch(`/users/change-role/${userId}`, {
+      role,
+    });
 
     revalidateTag("users");
     revalidateTag("userProfile");

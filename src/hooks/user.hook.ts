@@ -74,12 +74,12 @@ export const useBlockStatusChange = () => {
     mutationKey: ["USER_BLOCK_STATUS_CHANGE"],
     mutationFn: async ({
       userId,
-      statusData,
+      isBlock,
     }: {
       userId: string;
-      statusData: boolean;
+      isBlock: boolean;
     }) => {
-      return await blockStatusChange(userId, statusData);
+      return await blockStatusChange(userId, isBlock);
     },
     onSuccess: () => {
       toast.success("User status change!");
@@ -95,12 +95,12 @@ export const useRoleStatusChange = () => {
     mutationKey: ["USER_ROLE_STATUS_CHANGE"],
     mutationFn: async ({
       userId,
-      statusData,
+      role,
     }: {
       userId: string;
-      statusData: string;
+      role: string;
     }) => {
-      return await roleStatusChange(userId, statusData);
+      return await roleStatusChange(userId, role);
     },
     onSuccess: () => {
       toast.success("User role change!");
