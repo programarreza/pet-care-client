@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import {
+  blockStatusChange,
   follow,
   getUserProfile,
   unFollow,
@@ -63,6 +64,27 @@ export const useUnFollow = () => {
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
+    },
+  });
+};
+
+export const useBlockStatusChange = () => {
+  return useMutation({
+    mutationKey: ["USER_BLOCK_STATUS_CHANGE"],
+    mutationFn: async ({
+      userId,
+      statusData,
+    }: {
+      userId: string;
+      statusData: boolean;
+    }) => {
+      return await blockStatusChange(userId, statusData);
+    },
+    onSuccess: () => {
+      toast.success("User status change!");
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to status change: ${error.message}`);
     },
   });
 };

@@ -84,3 +84,23 @@ export const unFollow = async (unFollowData: FieldValues) => {
     throw new Error(error);
   }
 };
+
+export const blockStatusChange = async (
+  userId: string,
+  statusData: boolean
+) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/users/block-status/${userId}`,
+      statusData
+    );
+
+    revalidateTag("users");
+    revalidateTag("userProfile");
+
+    return data;
+  } catch (error: any) {
+    console.log("from blockStatusChange", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};
