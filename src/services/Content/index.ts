@@ -87,3 +87,20 @@ export const Upvote = async (userId: string, contentId: string) => {
     throw new Error(error);
   }
 };
+
+export const Downvote = async (userId: string, contentId: string) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/contents/downvote/${contentId}`,
+      { userId }
+    );
+
+    revalidateTag("contents");
+    revalidateTag("myContents");
+
+    return data;
+  } catch (error: any) {
+    console.log("from Upvote", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};

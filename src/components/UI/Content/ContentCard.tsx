@@ -67,7 +67,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
         {/* voteCard or Like & comments area */}
         <div className="flex justify-between items-center border-y py-4 ">
           <div>
-            <VoteCard totalVote={content?.totalVote} contentId={content?._id}/>
+            <VoteCard content={content}/>
           </div>
 
           <div>

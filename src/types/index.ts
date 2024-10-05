@@ -22,8 +22,8 @@ export interface IContent {
   image: string;
   category: string;
   contentType: string;
-  upVote: any[];
-  downVote: any[];
+  upVote: string[];
+  downVote: string[];
   totalVote: number;
   status: string;
   isDeleted: boolean;

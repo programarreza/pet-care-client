@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
-import { createContent, Upvote } from "../services/Content";
+import { createContent, Downvote, Upvote } from "../services/Content";
 import { toast } from "sonner";
 
 export const useCreateContent = () => {
@@ -29,7 +29,28 @@ export const useUpvote = () => {
       return await Upvote(userId, contentId);
     },
     onSuccess: () => {
-      toast.success("upvote successfully!");
+      // toast.success("upvote successfully!");
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to upvote: ${error.message}`);
+    },
+  });
+};
+
+export const useDownvote = () => {
+  return useMutation({
+    mutationKey: ["DOWNVOTE"],
+    mutationFn: async ({
+      userId,
+      contentId,
+    }: {
+      userId: string;
+      contentId: string;
+    }) => {
+      return await Downvote(userId, contentId);
+    },
+    onSuccess: () => {
+      // toast.success("downvote successfully!");
     },
     onError: (error: any) => {
       toast.error(`Failed to upvote: ${error.message}`);
