@@ -1,91 +1,3 @@
-// "use client";
-
-// import emailjs from "@emailjs/browser";
-// import { Button } from "@nextui-org/button";
-// import { useRef } from "react";
-// import { toast } from "sonner";
-
-// const ContactUsPage = () => {
-//   const form = useRef<HTMLFormElement | null>(null);
-
-//   const sendEmail = (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     if (form.current) {
-//       emailjs
-//         .sendForm(
-//           "service_w1bwd28",
-//           "template_whgfeza",
-//           form.current,
-//           "r47p78wRwpxxE4GAT"
-//         )
-//         .then(
-//           (result) => {
-//             console.log(result.text);
-//             toast.success("Thanks for contacting");
-//             form.current?.reset();
-//           },
-//           (error) => {
-//             console.log(error.text);
-//           }
-//         );
-//     } else {
-//       console.error("Form reference is null.");
-//     }
-//   };
-
-//   return (
-//     <div className="border px-4  text-center" id="contact">
-//       <h2 className="text-white py-6 text-3xl">Contact Us</h2>
-
-//       {/* Contact Form */}
-//       <div className=" p-6 rounded-lg shadow-2xl">
-//         <form ref={form} onSubmit={sendEmail}>
-//           <div className="grid gap-5 w-full text-center">
-//             <input
-//               required
-//               className="p-2 rounded-lg py-3 text-white"
-//               type="text"
-//               name="user_name"
-//               placeholder="Name"
-//             />
-//             <input
-//               required
-//               className="p-2 rounded-lg py-3 text-white"
-//               type="email"
-//               name="user_email"
-//               placeholder="Email"
-//             />
-//           </div>
-//           <input
-//             required
-//             className="p-2 rounded-lg w-full mt-4 py-3 text-white"
-//             type="text"
-//             name="user_subject"
-//             placeholder="Subject"
-//           />
-//           <textarea
-//             className="w-full my-4 py-12 px-4 rounded-lg  text-white"
-//             name="message"
-//             placeholder="Your Message"
-//             required
-//           />
-//           <Button
-//             className="btn flex py-3 text-white hover:bg-[#162c46]"
-//             type="submit"
-//           >
-//             Send Message
-//             {/* <SiMinutemailer className="text-2xl ml-2" />*/}
-//           </Button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ContactUsPage;
-
-
 "use client";
 
 import emailjs from "@emailjs/browser";
@@ -106,7 +18,7 @@ const ContactUsPage = () => {
     }
 
     setLoading(true);
-    
+
     try {
       const result = await emailjs.sendForm(
         "service_w1bwd28",
@@ -115,7 +27,9 @@ const ContactUsPage = () => {
         "r47p78wRwpxxE4GAT"
       );
       console.log(result.text);
-      toast.success("Thanks for contacting us! We will get back to you shortly.");
+      toast.success(
+        "Thanks for contacting us! We will get back to you shortly."
+      );
       form.current.reset();
     } catch (error) {
       console.error("Error sending email:", error);
