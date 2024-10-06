@@ -1,5 +1,7 @@
 const PaymentHistory = () => {
-  return <div>this is payment history page access only admin</div>;
+  return (
+    <div className="mt-4 ">this is payment history page access only admin</div>
+  );
 };
 
 export default PaymentHistory;

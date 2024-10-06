@@ -12,8 +12,8 @@ import NextLink from "next/link";
 import NavbarDropdown from "./UI/NavbarDropdown";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
-import { useUser } from "../context/user.provider";
 import CreateContentModal from "./modals/CreateContentModal";
+import { useUser } from "../context/user.provider";
 
 export const Navbar = () => {
   const { user } = useUser();

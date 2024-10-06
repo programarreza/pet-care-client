@@ -71,9 +71,9 @@ const ContentCard = ({ content }: { content: IContent }) => {
           </div>
 
           <div>
-            <Button color="success" variant="shadow">
+            {/* <Button color="success" variant="shadow">
               Comments
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

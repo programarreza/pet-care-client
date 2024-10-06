@@ -52,15 +52,15 @@ const FollowCard = ({ content }: { content: IContent }) => {
     <div>
       {/* Follow/Unfollow button */}
       {user?.id !== content?.user?._id && (
-        <div className="mt-4">
+        <div className="mt-4 mb-1">
           {isFollowing ? (
-            <Button color="default" onClick={handleUnfollow}>
+            <button className="bg-gray-900 p-2 rounded-lg" onClick={handleUnfollow}>
               {isPendingUnFollow ? "Unfollowing..." : "Unfollow"}
-            </Button>
+            </button>
           ) : (
-            <Button color="default" onClick={handleFollow}>
+            <button className="bg-gray-900 p-2 rounded-lg" onClick={handleFollow}>
               {isPendingFollow ? "Following.." : "Follow"}
-            </Button>
+            </button>
           )}
         </div>
       )}

@@ -26,7 +26,7 @@ export const createContent = async (formData: FormData): Promise<any> => {
   }
 };
 
-export const getContents = async () => {
+export const getContents = async (searchValue: string = "") => {
   let fetchOptions = {};
 
   fetchOptions = {
@@ -36,7 +36,10 @@ export const getContents = async () => {
     cache: "no-store",
   };
 
-  const res = await fetch(`${envConfig.baseApi}/contents`, fetchOptions);
+  const res = await fetch(
+    `${envConfig.baseApi}/contents?searchTerm=${searchValue}`,
+    fetchOptions
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch content data");
   }

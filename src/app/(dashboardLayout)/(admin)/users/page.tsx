@@ -5,7 +5,7 @@ const UsersPage = async () => {
   const { data: users = [] } = await getUsers();
 
   return (
-    <div>
+    <div className="mt-4 ">
       <UserCard users={users}/>
     </div>
   );

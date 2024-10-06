@@ -11,18 +11,22 @@ const ProfileLayout = ({
   profile: ReactNode;
 }) => {
   return (
-    <Container>
-      <div className="flex gap-4  justify-end">
+    // <Container>
+    <div className="m-2">
+      {/* <div className="flex gap-4  justify-end">
         <div className="border rounded-lg">
           <CreateContentModal />
         </div>
 
         <NavbarDropdown />
-      </div>
+      </div> */}
       {profile} {/* profile fixed */}
       <div>{children}</div> {/* like --> contents , followed, followers page*/}
-    </Container>
+    </div>
   );
 };
 
 export default ProfileLayout;
+{
+  /* </Container> */
+}

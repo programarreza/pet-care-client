@@ -22,7 +22,7 @@ const ProfileDefault = () => {
 
   return (
     <div>
-      <div className="relative mt-[30px]">
+      <div className="relative">
         <div className="border rounded-md h-32 bg-gray-900"></div>
         <div className="absolute -mt-24 ml-5">
           <Avatar
