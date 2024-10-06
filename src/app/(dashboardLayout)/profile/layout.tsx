@@ -1,6 +1,3 @@
-import Container from "@/src/components/Container";
-import CreateContentModal from "@/src/components/modals/CreateContentModal";
-import NavbarDropdown from "@/src/components/UI/NavbarDropdown";
 import { ReactNode } from "react";
 
 const ProfileLayout = ({
@@ -20,6 +17,3 @@ const ProfileLayout = ({
 };
 
 export default ProfileLayout;
-{
-  /* </Container> */
-}

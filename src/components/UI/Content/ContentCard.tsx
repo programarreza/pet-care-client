@@ -1,6 +1,5 @@
 import { IContent } from "@/src/types";
 import { Avatar } from "@nextui-org/avatar";
-import { Button } from "@nextui-org/button";
 import { format } from "date-fns";
 import Image from "next/image";
 import premiumIcon from "../../../assets/premium.png";
@@ -47,7 +46,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
         {/* Content area */}
         <div className="my-4">
           <div
-            className="prose max-w-none text-white "
+            className="prose max-w-none prose-invert text-white "
             dangerouslySetInnerHTML={{ __html: content?.content }}
           />
           {/* Image associated with the content */}
@@ -67,7 +66,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
         {/* voteCard or Like & comments area */}
         <div className="flex justify-between items-center border-y py-4 ">
           <div>
-            <VoteCard content={content}/>
+            <VoteCard content={content} />
           </div>
 
           <div>

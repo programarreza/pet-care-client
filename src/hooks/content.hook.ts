@@ -1,6 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
-import { createContent, Downvote, Upvote } from "../services/Content";
+import {
+  createContent,
+  Downvote,
+  StatusChange,
+  Upvote,
+} from "../services/Content";
 import { toast } from "sonner";
 
 export const useCreateContent = () => {
@@ -54,6 +59,27 @@ export const useDownvote = () => {
     },
     onError: (error: any) => {
       toast.error(`Failed to upvote: ${error.message}`);
+    },
+  });
+};
+
+export const useStatusChange = () => {
+  return useMutation({
+    mutationKey: ["STATUS_CHANGE"],
+    mutationFn: async ({
+      contentId,
+      status,
+    }: {
+      contentId: string;
+      status: string;
+    }) => {
+      return await StatusChange(contentId, status);
+    },
+    onSuccess: () => {
+      toast.success("status changed!");
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to status change: ${error.message}`);
     },
   });
 };

@@ -1,48 +1,44 @@
-import envConfig from "@/src/config/envConfig";
-import { getNewAccessToken } from "@/src/services/AuthService";
-import axios from "axios";
 import { cookies } from "next/headers";
+import envConfig from "@/src/config/envConfig";
+import axios from "axios";
+import { getNewAccessToken } from "@/src/services/AuthService";
 
 const axiosInstance = axios.create({
   baseURL: envConfig.baseApi,
 });
 
 axiosInstance.interceptors.request.use(
-  function (config) {
-    const cookieStore = cookies();
+  (config) => {
+    const cookieStore = cookies(); // Access server-side cookies
     const accessToken = cookieStore.get("accessToken")?.value;
 
     if (accessToken) {
-      config.headers.Authorization = accessToken;
+      config.headers.Authorization = accessToken; // No 'Bearer', just the token
     }
+    // console.log({ accessToken });
 
     return config;
   },
-  function (error) {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 axiosInstance.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  async function (error) {
+  (response) => response,
+  async (error) => {
     const config = error.config;
 
     if (error?.response?.status === 401 && !config?.sent) {
       config.sent = true;
-
       const res = await getNewAccessToken();
-      const accessToken = res.data.accessToken;
+      const newAccessToken = res.data.accessToken;
 
-      config.headers["Authorization"] = accessToken;
-      cookies().set("accessToken", accessToken);
+      cookies().set("accessToken", newAccessToken); // Update accessToken on server-side
+      config.headers.Authorization = newAccessToken; // No 'Bearer', just the token
 
-      return axiosInstance(config);
-    } else {
-      return Promise.reject(error);
+      return axiosInstance(config); // Retry the request with the new token
     }
+
+    return Promise.reject(error);
   }
 );
 

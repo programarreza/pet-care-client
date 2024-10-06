@@ -107,3 +107,20 @@ export const Downvote = async (userId: string, contentId: string) => {
     throw new Error(error);
   }
 };
+
+export const StatusChange = async (contentId: string, status: string) => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/contents/change-status/${contentId}`,
+      { status }
+    );
+
+    revalidateTag("contents");
+    revalidateTag("myContents");
+
+    return data;
+  } catch (error: any) {
+    console.log("from StatusChange", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};

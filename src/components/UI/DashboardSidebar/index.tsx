@@ -3,19 +3,18 @@
 import { Button } from "@nextui-org/button";
 import { NavbarContent, Navbar as NextUINavbar } from "@nextui-org/navbar";
 import Link from "next/link";
-import CreateContentModal from "../../modals/CreateContentModal";
 
 const DashboardSidebar = () => {
   return (
-    <div className="pt-16 h-[calc(100vh-70px)] border border-gray-200 sticky top-[70px] overflow-y-auto">
-      <NextUINavbar maxWidth="xl" position="sticky">
-        <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 w-full">
+    <div className=" h-[calc(100vh-70px)] rounded-md bg-[#18191A] sticky overflow-y-auto">
+      <NextUINavbar maxWidth="xl" position="sticky" className="px-0">
+        <NavbarContent className="flex flex-col  justify-start bg-[#18191A]  px-0 mx-0 ">
           <Link href={"/profile"} className="w-full">
             <Button className="w-full ">Profile</Button>
           </Link>
-          {/* <div className="w-full bg-[#39393F] text-center rounded-xl">
-            <CreateContentModal />
-          </div> */}
+          <Link href={"/all-contents"} className="w-full">
+            <Button className="w-full ">All Contents</Button>
+          </Link>
           <Link href={"/users"} className="w-full">
             <Button className="w-full ">Users</Button>
           </Link>
