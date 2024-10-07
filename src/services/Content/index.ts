@@ -5,6 +5,7 @@ import axiosInstance from "@/src/lib/AxiosInstance";
 import { getCurrentUser } from "../AuthService";
 import { FieldValues } from "react-hook-form";
 import { revalidateTag } from "next/cache";
+import { TQueryParams } from "@/src/types";
 
 export const createContent = async (formData: FormData): Promise<any> => {
   try {
@@ -26,7 +27,11 @@ export const createContent = async (formData: FormData): Promise<any> => {
   }
 };
 
-export const getContents = async (searchValue: string = "") => {
+export const getContents = async (
+  page: number,
+  pageSize: number,
+  args: TQueryParams[]
+) => {
   let fetchOptions = {};
 
   fetchOptions = {
@@ -36,15 +41,27 @@ export const getContents = async (searchValue: string = "") => {
     cache: "no-store",
   };
 
+  const params = new URLSearchParams();
+
+  params.append("sort", "-createdAt");
+  params.append("page", page.toString());
+  params.append("limit", pageSize.toString());
+
+  if (args) {
+    args.forEach((item: TQueryParams) => {
+      params.append(item.name, String(item.value));
+    });
+  }
+
   const res = await fetch(
-    `${envConfig.baseApi}/contents?searchTerm=${searchValue}`,
+    `${envConfig.baseApi}/contents?${params.toString()}`,
     fetchOptions
   );
   if (!res.ok) {
     throw new Error("Failed to fetch content data");
   }
 
-  return res.json();
+  return await res.json();
 };
 
 export const getMyContents = async () => {

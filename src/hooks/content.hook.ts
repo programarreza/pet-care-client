@@ -1,13 +1,15 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import {
   createContent,
   CreatePayment,
   Downvote,
+  getContents,
   StatusChange,
   Upvote,
 } from "../services/Content";
 import { toast } from "sonner";
+import { TQueryParams } from "../types";
 
 export const useCreateContent = () => {
   return useMutation<any, Error, FormData>({
@@ -96,6 +98,19 @@ export const useCreatePayment = () => {
     },
     onError: (error: any) => {
       toast.error(`Failed to create payment: ${error.message}`);
+    },
+  });
+};
+
+export const useGetContents = (
+  page: number,
+  pageSize: number,
+  params: TQueryParams[]
+) => {
+  return useQuery({
+    queryKey: ["GET_CONTENTS", page, pageSize, params], 
+    queryFn: async () => {
+      return await getContents(page, pageSize, params);
     },
   });
 };

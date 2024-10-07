@@ -1,3 +1,4 @@
+"use client";
 import { IContent } from "@/src/types";
 import { Avatar } from "@nextui-org/avatar";
 import { format } from "date-fns";

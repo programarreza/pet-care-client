@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { IUser } from "../types";
+import { IUser, TQueryParams } from "../types";
 import { getCurrentUser } from "../services/AuthService";
 
 const UserContext = createContext<IUserProviderValues | undefined>(undefined);
@@ -19,9 +19,12 @@ interface IUserProviderValues {
   isLoading: boolean;
   setUser: (user: IUser) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setParams: Dispatch<SetStateAction<TQueryParams[] | []>>;
+  params: TQueryParams[] | [];
 }
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [params, setParams] = useState<TQueryParams[] | []>([]);
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,7 +40,9 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   }, [isLoading]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>
+    <UserContext.Provider
+      value={{ user, setUser, isLoading, setIsLoading, setParams, params }}
+    >
       {children}
     </UserContext.Provider>
   );

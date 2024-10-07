@@ -71,3 +71,9 @@ export interface IPayment {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export type TQueryParams = {
+  name: string;
+  value: boolean | React.Key;
+};
+
