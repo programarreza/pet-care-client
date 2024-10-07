@@ -22,23 +22,30 @@ export const createComment = async (commentData: FieldValues) => {
 };
 
 export const getComments = async (contentId: string) => {
-  // let fetchOptions = {};
+  let fetchOptions = {};
 
-  const fetchOptions = {
+  fetchOptions = {
     next: {
       tags: ["comments"],
     },
   };
 
-  const res = await fetch(
-    `${envConfig.baseApi}/comments/${contentId}`,
+  // const res = await fetch(
+  //   `${envConfig.baseApi}/comments/${contentId}`,
+  //   fetchOptions
+  // );
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch data");
+  // }
+
+  // return res.json();
+
+  const { data } = await axiosInstance.get(
+    `/comments/${contentId}`,
     fetchOptions
   );
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
 
-  return res.json();
+  return data?.data;
 };
 
 export const deleteComment = async (commentId: string) => {

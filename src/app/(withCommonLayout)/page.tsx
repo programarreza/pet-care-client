@@ -1,21 +1,3 @@
-// import ContentCard from "@/src/components/UI/Content/ContentCard";
-// import { getContents } from "@/src/services/Content";
-// import { IContent } from "@/src/types";
-
-// const HomePage = async () => {
-//   const { data: contents } = await getContents();
-
-//   return (
-//     <div>
-//       {contents?.map((content: IContent, index: number) => (
-//         <ContentCard key={index} content={content} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default HomePage;
-
 "use client";
 
 import ContentCard from "@/src/components/UI/Content/ContentCard";
@@ -53,13 +35,15 @@ const HomePage = () => {
   infiniteScroll(page, setPage, data?.data?.meta?.total, pageSize);
 
   return (
-    <div>
+    <div className="">
       {contents.map((content: IContent, index: number) => (
         <ContentCard key={index} content={content} />
       ))}
       {isLoading && !isSuccess && (
-        <div className="w-full flex justify-center items-center my-10">
-          <Spinner color="primary" />
+        <div className="bg-[#101214] min-h-screen rounded-lg">
+          <div className="w-full flex justify-center items-center py-24">
+            <Spinner color="primary" />
+          </div>
         </div>
       )}
     </div>

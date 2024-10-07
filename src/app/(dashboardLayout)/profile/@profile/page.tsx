@@ -21,7 +21,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#101214] mb-2">
       <div className="relative ">
         <div className="border rounded-md h-32 bg-gray-900"></div>
         <div className="absolute -mt-24 ml-5">
@@ -60,7 +60,7 @@ const Profile = () => {
 
       {/* navLink */}
       <Breadcrumbs
-        className="p-3 my-5 border-b"
+        className="p-3 my-5 border-b py-6"
         size="sm"
         onAction={(key) => setCurrentPage(key as string)}
         classNames={{

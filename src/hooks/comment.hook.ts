@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import {
   createComment,
   deleteComment,
+  getComments,
   updateComment as updateCommentService,
 } from "../services/Comment";
 
@@ -52,5 +53,12 @@ export const useUpdateComment = () => {
     onError: (error: any) => {
       toast.error(`Failed to update comment: ${error.message}`);
     },
+  });
+};
+
+export const useGetComments = (contentId: string) => {
+  return useQuery({
+    queryKey: ["GET_COMMENTS", contentId],
+    queryFn: async () => await getComments(contentId),
   });
 };

@@ -75,7 +75,7 @@ export default function AllContentCard({ contents }: IProps) {
             </TableCell>
             <TableCell>
               <div
-                className="prose prose-invert max-w-none text-white"
+                className="prose prose-invert max-w-none text-white text-sm"
                 dangerouslySetInnerHTML={{
                   __html:
                     content?.content?.length > 50

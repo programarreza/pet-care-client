@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
     <Container>
       <Navbar />
-      <div className="flex gap-5 pt-4">
+      <div className="flex gap-5">
         <div className="w-full max-w-52 ">
           <DashboardSidebar />
         </div>

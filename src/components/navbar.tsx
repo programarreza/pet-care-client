@@ -1,25 +1,36 @@
 "use client";
 
 import { Logo, SearchIcon } from "@/src/components/icons";
+import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
-import NextLink from "next/link";
-import NavbarDropdown from "./UI/NavbarDropdown";
-import Link from "next/link";
-import { Button } from "@nextui-org/button";
-import CreateContentModal from "./modals/CreateContentModal";
+import { default as Link, default as NextLink } from "next/link";
+import { useEffect, useState } from "react";
 import { useUser } from "../context/user.provider";
+import useDebounce from "../hooks/useDebounce.hook";
+import CreateContentModal from "./modals/CreateContentModal";
+import NavbarDropdown from "./UI/NavbarDropdown";
 
 export const Navbar = () => {
-  const { user } = useUser();
+  const { user, setParams } = useUser();
+  const [searchValue, setSearchValue] = useState("");
+
+  const searchTerm = useDebounce(searchValue);
+
+  useEffect(() => {
+    if (searchTerm) {
+      setParams([{ name: "searchTerm", value: searchTerm }]);
+    } else {
+      setParams([]);
+    }
+  }, [searchTerm, setParams]);
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar maxWidth="xl" position="sticky" className="bg-[#101214] mb-4">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -29,7 +40,7 @@ export const Navbar = () => {
 
         <div className="min-w-[400px] mx-auto">
           <Input
-            // label="Search"
+            onChange={(e) => setSearchValue(e.target.value)}
             isClearable
             radius="lg"
             classNames={{
@@ -63,7 +74,9 @@ export const Navbar = () => {
       <NavbarBrand as="li" className=" max-w-fit">
         {user?.email ? (
           <div className="flex gap-4 ">
-            <div className="border rounded-lg"><CreateContentModal /></div>
+            <div className="border rounded-lg">
+              <CreateContentModal />
+            </div>
 
             <NextLink className="flex justify-start items-center" href="/">
               <NavbarDropdown />

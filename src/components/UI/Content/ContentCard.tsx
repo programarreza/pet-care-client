@@ -12,7 +12,7 @@ import ContentPaymentCard from "./ContentPaymentCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
-    <div className="text-white shadow-lg rounded-lg overflow-hidden border mb-6">
+    <div className="text-white shadow-lg  overflow-hidden mb-6 bg-[#101214] rounded-lg">
       <div className="px-4 py-2">
         {/* User info */}
         <div className="flex justify-between items-center">

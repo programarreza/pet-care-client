@@ -10,12 +10,12 @@ import NextLink from "next/link";
 
 const Sidebar = () => {
   return (
-    <div className="w-full h-[calc(100vh-70px)] border border-gray-200 sticky top-[70px] overflow-y-auto">
-      <NextUINavbar maxWidth="xl" position="sticky">
-        <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 w-full">
+    <div className="w-full h-[calc(100vh-70px)] sticky top-[70px] overflow-y-auto ">
+      <NextUINavbar maxWidth="xl" position="sticky" className="">
+        <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 w-full ">
           <ul>
             {siteConfig.navItems.map((item) => (
-              <NavbarItem key={item.href}>
+              <NavbarItem key={item.href} className="bg-none">
                 <NextLink
                   className={clsx(
                     linkStyles({ color: "foreground" }),

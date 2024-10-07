@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const DashboardSidebar = () => {
   return (
-    <div className=" h-[calc(100vh-70px)] rounded-md bg-[#18191A] sticky overflow-y-auto">
+    <div className=" h-[calc(100vh-70px)] rounded-md bg-[#18191A] sticky overflow-y-auto ">
       <NextUINavbar maxWidth="xl" position="sticky" className="px-0">
         <NavbarContent className="flex flex-col  justify-start bg-[#18191A]  px-0 mx-0 ">
           <Link href={"/profile"} className="w-full">

@@ -9,7 +9,7 @@ const CommonLayout = ({ children }: { children: ReactNode }) => {
       <Container>
         <Navbar />
         <div className="flex gap-5">
-          <div className="w-full max-w-52"><Sidebar /></div>
+          <div className="w-full max-w-52 bg-[#101214] rounded-lg"><Sidebar /></div>
           <div className="w-full flex-1"> {children}</div>
         </div>
       </Container>

@@ -1,12 +1,12 @@
+"use client";
 
-
-import { getComments } from "@/src/services/Comment";
+import { useGetComments } from "@/src/hooks/comment.hook";
 import { IComment } from "@/src/types";
 import { Avatar } from "@nextui-org/avatar";
 import CommentCardAction from "./CommentCardAction";
 
-const CommentCard = async ({ contentId }: { contentId: string }) => {
-  const { data: comments = [] } = await getComments(contentId);
+const CommentCard = ({ contentId }: { contentId: string }) => {
+  const { data: comments } = useGetComments(contentId);
 
   return (
     <div>

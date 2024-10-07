@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 import {
   createContent,
   CreatePayment,
@@ -8,7 +8,6 @@ import {
   StatusChange,
   Upvote,
 } from "../services/Content";
-import { toast } from "sonner";
 import { TQueryParams } from "../types";
 
 export const useCreateContent = () => {
