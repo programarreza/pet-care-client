@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-// import { getCategories } from "../services/Categories";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import {
@@ -13,6 +12,7 @@ import {
 import { toast } from "sonner";
 
 export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["UPDATE_COMMENT"],
     mutationFn: async ({
@@ -22,6 +22,7 @@ export const useUpdateUser = () => {
       userId: string;
       userData: FieldValues;
     }) => {
+      queryClient.invalidateQueries({ queryKey: ["GET_USER_PROFILE"] });
       return await updateUser(userId, userData);
     },
     onSuccess: () => {
@@ -42,12 +43,13 @@ export const useGetUserProfile = (email: string) => {
 };
 
 export const useFollow = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, FieldValues>({
     mutationKey: ["FOLLOW"],
     mutationFn: async (followData) => follow(followData),
-    // onSuccess: () => {
-
-    // },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["GET_USER_PROFILE"] });
+    },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
@@ -56,12 +58,13 @@ export const useFollow = () => {
 };
 
 export const useUnFollow = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, FieldValues>({
     mutationKey: ["UN_FOLLOW"],
     mutationFn: async (unFollowData) => unFollow(unFollowData),
-    // onSuccess: () => {
-
-    // },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["GET_USER_PROFILE"] });
+    },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
@@ -70,6 +73,7 @@ export const useUnFollow = () => {
 };
 
 export const useBlockStatusChange = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["USER_BLOCK_STATUS_CHANGE"],
     mutationFn: async ({
@@ -79,6 +83,7 @@ export const useBlockStatusChange = () => {
       userId: string;
       isBlock: boolean;
     }) => {
+      queryClient.invalidateQueries({ queryKey: ["GET_USER_PROFILE"] });
       return await blockStatusChange(userId, isBlock);
     },
     onSuccess: () => {
@@ -91,15 +96,11 @@ export const useBlockStatusChange = () => {
 };
 
 export const useRoleStatusChange = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["USER_ROLE_STATUS_CHANGE"],
-    mutationFn: async ({
-      userId,
-      role,
-    }: {
-      userId: string;
-      role: string;
-    }) => {
+    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
+      queryClient.invalidateQueries({ queryKey: ["GET_USER_PROFILE"] });
       return await roleStatusChange(userId, role);
     },
     onSuccess: () => {

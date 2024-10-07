@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import {
   createContent,
@@ -11,11 +11,15 @@ import {
 import { TQueryParams } from "../types";
 
 export const useCreateContent = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, FormData>({
     mutationKey: ["CREATE_CONTENT"],
     mutationFn: async (postData) => createContent(postData),
     onSuccess: () => {
       toast.success("Content post successfully!");
+
+      // Invalidate or refetch the contents after mutation success
+      queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] }); // Invalidate the cache
     },
     onError: (error) => {
       toast.error(error.message);
@@ -24,6 +28,7 @@ export const useCreateContent = () => {
 };
 
 export const useUpvote = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["UPVOTE"],
     mutationFn: async ({
@@ -37,6 +42,9 @@ export const useUpvote = () => {
     },
     onSuccess: () => {
       // toast.success("upvote successfully!");
+
+      // Invalidate or refetch the contents after mutation success
+      queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] }); // Invalidate the cache
     },
     onError: (error: any) => {
       toast.error(`Failed to upvote: ${error.message}`);
@@ -45,6 +53,7 @@ export const useUpvote = () => {
 };
 
 export const useDownvote = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["DOWNVOTE"],
     mutationFn: async ({
@@ -58,6 +67,9 @@ export const useDownvote = () => {
     },
     onSuccess: () => {
       // toast.success("downvote successfully!");
+
+      // Invalidate or refetch the contents after mutation success
+      queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] }); // Invalidate the cache
     },
     onError: (error: any) => {
       toast.error(`Failed to upvote: ${error.message}`);
@@ -66,6 +78,7 @@ export const useDownvote = () => {
 };
 
 export const useStatusChange = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["STATUS_CHANGE"],
     mutationFn: async ({
@@ -79,6 +92,10 @@ export const useStatusChange = () => {
     },
     onSuccess: () => {
       toast.success("status changed!");
+
+      // Invalidate or refetch the contents after mutation success
+      queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] });
+      // Invalidate the cache
     },
     onError: (error: any) => {
       toast.error(`Failed to status change: ${error.message}`);
@@ -107,9 +124,21 @@ export const useGetContents = (
   params: TQueryParams[]
 ) => {
   return useQuery({
-    queryKey: ["GET_CONTENTS", page, pageSize, params], 
+    queryKey: ["GET_CONTENTS", page, pageSize, params],
     queryFn: async () => {
       return await getContents(page, pageSize, params);
     },
   });
 };
+
+// export const useGetContents = (
+//   page: number,
+//   pageSize: number,
+//   params: TQueryParams[]
+// ) => {
+//   return useQuery({
+//     queryKey: ["GET_CONTENTS", page, pageSize, params],
+//     queryFn: async () => getContents(page, pageSize, params),
+//     // staleTime: 60000, // Optional: Adjust cache stale time based on your needs
+//   });
+// };

@@ -2,7 +2,7 @@
 
 const AboutUsPage = () => {
   return (
-    <div className="min-h-screen text-white border">
+    <div className="min-h-screen text-white bg-[#101214] rounded-lg">
       <div className="container mx-auto py-10 ">
         {/* Our mission and vision */}
         <div className="rounded-lg shadow-lg p-8 space-y-8">

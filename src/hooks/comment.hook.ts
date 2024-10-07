@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import {
@@ -9,12 +9,13 @@ import {
 } from "../services/Comment";
 
 export const useCreateComment = () => {
+  const queryClient = useQueryClient();
   return useMutation<any, Error, FieldValues>({
     mutationKey: ["CREATE_COMMENT"],
     mutationFn: async (userData) => createComment(userData),
-    // onSuccess: () => {
-
-    // },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["GET_COMMENTS"] });
+    },
     onError: (error) => {
       toast.error(error.message);
       console.log(error);
@@ -23,11 +24,12 @@ export const useCreateComment = () => {
 };
 
 export const useDeleteComment = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["DELETE_COMMENT"],
     mutationFn: async (commentId: string) => await deleteComment(commentId),
     onSuccess: () => {
-      // toast.success("Comment deleted successfully!");
+      queryClient.invalidateQueries({ queryKey: ["GET_COMMENTS"] });
     },
     onError: (error: any) => {
       console.log(error);
@@ -36,6 +38,7 @@ export const useDeleteComment = () => {
 };
 
 export const useUpdateComment = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["UPDATE_COMMENT"],
     mutationFn: async ({
@@ -49,6 +52,7 @@ export const useUpdateComment = () => {
     },
     onSuccess: () => {
       toast.success("Comment updated successfully!");
+      queryClient.invalidateQueries({ queryKey: ["GET_COMMENTS"] });
     },
     onError: (error: any) => {
       toast.error(`Failed to update comment: ${error.message}`);

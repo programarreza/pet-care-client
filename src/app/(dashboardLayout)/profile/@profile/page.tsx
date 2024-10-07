@@ -28,8 +28,8 @@ const Profile = () => {
           <Avatar
             isBordered
             color="primary"
-            src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
-            className="w-50 h-50 "
+            src={userInfo?.image}
+            className="w-36 h-36 "
           />
         </div>
       </div>

@@ -40,7 +40,10 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="border px-4 py-6 text-center " id="contact">
+    <div
+      className="bg-[#101214] rounded-lg px-4 py-24 text-center "
+      id="contact"
+    >
       <h2 className="text-white text-3xl mb-6">Contact for support</h2>
 
       {/* Contact Form */}
@@ -49,7 +52,7 @@ const ContactUsPage = () => {
           <div className="grid gap-5 w-full text-center">
             <input
               required
-              className="p-2 rounded-lg py-3 text-white bg-gray-900"
+              className="p-2 rounded-lg py-3 text-white bg-black"
               type="text"
               name="user_name"
               placeholder="Name"
@@ -57,7 +60,7 @@ const ContactUsPage = () => {
             />
             <input
               required
-              className="p-2 rounded-lg py-3 text-white bg-gray-900"
+              className="p-2 rounded-lg py-3 text-white bg-black"
               type="email"
               name="user_email"
               placeholder="Email"
@@ -66,21 +69,21 @@ const ContactUsPage = () => {
           </div>
           <input
             required
-            className="p-2 rounded-lg w-full mt-4 py-3 text-white bg-gray-900"
+            className="p-2 rounded-lg w-full mt-4 py-3 text-white bg-black"
             type="text"
             name="user_subject"
             placeholder="Subject"
             aria-label="Subject"
           />
           <textarea
-            className="w-full my-4 py-3 px-4 rounded-lg text-white bg-gray-900"
+            className="w-full my-4 py-3 px-4 rounded-lg text-white bg-black"
             name="message"
             placeholder="Your Message"
             aria-label="Your Message"
             required
           />
           <Button
-            className="btn flex py-3 text-white bg-gray-900 hover:bg-gray-800"
+            className="btn flex py-3 text-white bg-black hover:bg-gray-800"
             type="submit"
             disabled={loading}
           >
