@@ -1,3 +1,4 @@
+import exp from "constants";
 import { ReactNode, SVGProps } from "react";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
@@ -59,4 +60,14 @@ export interface IComment {
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+
+export interface IPayment {
+  _id: string;
+  user: IUser;
+  paymentStatus: string;
+  paymentAmount: number;
+  transactionId: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
