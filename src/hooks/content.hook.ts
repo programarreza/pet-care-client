@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import {
   createContent,
+  CreatePayment,
   Downvote,
   StatusChange,
   Upvote,
@@ -80,6 +81,21 @@ export const useStatusChange = () => {
     },
     onError: (error: any) => {
       toast.error(`Failed to status change: ${error.message}`);
+    },
+  });
+};
+
+export const useCreatePayment = () => {
+  return useMutation({
+    mutationKey: ["CREATE_PAYMENT"],
+    mutationFn: async ({ user }: { user: string }) => {
+      return await CreatePayment(user);
+    },
+    onSuccess: () => {
+      // toast.success("create payment successful");
+    },
+    onError: (error: any) => {
+      toast.error(`Failed to create payment: ${error.message}`);
     },
   });
 };

@@ -124,3 +124,16 @@ export const StatusChange = async (contentId: string, status: string) => {
     throw new Error(error);
   }
 };
+
+export const CreatePayment = async (user: string) => {
+  try {
+    const { data } = await axiosInstance.post(`/payments/create-payment`, {
+      user,
+    });
+
+    return data?.data;
+  } catch (error: any) {
+    console.log("from CreatePayment", error?.response?.data?.message);
+    throw new Error(error);
+  }
+};

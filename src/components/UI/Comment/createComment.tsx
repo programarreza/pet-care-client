@@ -36,6 +36,7 @@ const CreateComment = ({ contentId }: { contentId: string }) => {
                 type="text"
                 placeholder="Write a comment"
                 className="w-full p-2 border rounded"
+                // disabled={true}
               />
             </div>
 

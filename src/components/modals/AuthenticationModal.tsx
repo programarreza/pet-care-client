@@ -3,14 +3,14 @@ import Link from "next/link";
 import PCModal from "./PCModel";
 
 interface IProps {
-  id: string;
+  buttonText: string;
 }
 
-const AuthenticationModal = ({ id }: IProps) => {
+const AuthenticationModal = ({ buttonText }: IProps) => {
   return (
     <PCModal
       title="Authentication"
-      buttonText="Claim Item"
+      buttonText={buttonText}
       buttonClassName="flex-1"
     >
       <div>You are not currently logged in. Please login first to continue</div>

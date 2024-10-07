@@ -7,6 +7,7 @@ import CreateComment from "../Comment/createComment";
 import FollowCard from "../Follow/FollowCard";
 import CommentCard from "./CommentCard";
 import VoteCard from "./VoteCard";
+import ContentPaymentCard from "./ContentPaymentCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
   return (
@@ -45,10 +46,8 @@ const ContentCard = ({ content }: { content: IContent }) => {
 
         {/* Content area */}
         <div className="my-4">
-          <div
-            className="prose max-w-none prose-invert text-white "
-            dangerouslySetInnerHTML={{ __html: content?.content }}
-          />
+          <ContentPaymentCard content={content} />
+
           {/* Image associated with the content */}
           {content?.image && (
             <div className="bg-gray-200 w-full mt-4">
