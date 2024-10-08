@@ -35,11 +35,6 @@ const LoginPage = () => {
 
       <div className="">
         <PCForm
-          //! Only for development
-          defaultValues={{
-            email: "rakib@gmail.com",
-            password: "123456",
-          }}
           resolver={zodResolver(loginValidationSchema)}
           onSubmit={onSubmit}
         >

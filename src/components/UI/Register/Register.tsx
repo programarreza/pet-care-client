@@ -44,14 +44,6 @@ const Register = () => {
 
       <div className="">
         <PCForm
-          //! Only for development
-          defaultValues={{
-            name: "Rakib Hasan",
-            email: "rakib@gmail.com",
-            phone: "01711223344",
-            password: "123456",
-            address: "barisal",
-          }}
           resolver={zodResolver(registerValidationSchema)}
           onSubmit={onSubmit}
         >
