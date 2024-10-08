@@ -49,35 +49,49 @@ const ContentPaymentCard = ({ content }: { content: IContent }) => {
           {!loggedUser && <AuthenticationModal buttonText="See more..." />}
 
           {/* If the user is logged in but has BASIC status */}
-          {loggedUser?.status === "BASIC" && (
-            <button
-              className="text-blue-500 hover:underline mt-2"
-              tabIndex={0}
-              onClick={handlePayment}
-            >
-              {isPending ? (
-                <p className="bg-gray-900 p-1 rounded-lg">
-                  payment processing..
-                </p>
-              ) : (
-                <p className="bg-gray-900 p-1 rounded-lg">
-                  {" "}
-                  Pay now to see more..
-                </p>
-              )}
-            </button>
-          )}
+          {loggedUser?.status === "BASIC" &&
+            content?.contentType === "PREMIUM" && (
+              <button
+                className="text-blue-500 hover:underline mt-2"
+                tabIndex={0}
+                onClick={handlePayment}
+              >
+                {isPending ? (
+                  <p className="bg-gray-900 p-1 rounded-lg">
+                    payment processing..
+                  </p>
+                ) : (
+                  <p className="bg-gray-900 p-1 rounded-lg">
+                    {" "}
+                    Pay now to see more..
+                  </p>
+                )}
+              </button>
+            )}
 
           {/* If the user has PREMIUM status */}
-          {loggedUser?.status === "PREMIUM" && (
-            <button
-              className="text-blue-500 hover:underline mt-2"
-              tabIndex={0}
-              onClick={toggleExpanded}
-            >
-              {isExpanded ? "See Less" : "See More"}
-            </button>
-          )}
+          {loggedUser?.status === "PREMIUM" &&
+            content?.contentType === "PREMIUM" && (
+              <button
+                className="text-blue-500 hover:underline mt-2"
+                tabIndex={0}
+                onClick={toggleExpanded}
+              >
+                {isExpanded ? "See Less" : "See More"}
+              </button>
+            )}
+
+          {/* If the user has BASIC status */}
+          {loggedUser?.status === "BASIC" &&
+            content?.contentType === "BASIC" && (
+              <button
+                className="text-blue-500 hover:underline mt-2"
+                tabIndex={0}
+                onClick={toggleExpanded}
+              >
+                {isExpanded ? "See Less" : "See More"}
+              </button>
+            )}
         </div>
       )}
     </div>
