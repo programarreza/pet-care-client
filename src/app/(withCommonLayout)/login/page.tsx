@@ -10,9 +10,11 @@ import loginValidationSchema from "@/src/schemas/login.schema";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import PCInput from "@/src/components/form/PCInput";
 import PCForm from "@/src/components/form/PCForm";
+import { useUser } from "@/src/context/user.provider";
 
 const LoginPage = () => {
   const { mutate: handleUserLogin } = useUserLogin();
+  const { setIsLoading: userLogin } = useUser();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -24,6 +26,7 @@ const LoginPage = () => {
     handleUserLogin(userData, {
       onSuccess: () => {
         router.push("/");
+        userLogin(true);
       },
     });
   };
