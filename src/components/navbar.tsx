@@ -8,6 +8,8 @@ import {
   NavbarContent,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
+import { Select, SelectItem } from "@nextui-org/select";
+import { SharedSelection } from "@nextui-org/system";
 import { default as Link, default as NextLink } from "next/link";
 import { useEffect, useState } from "react";
 import { useUser } from "../context/user.provider";
@@ -15,19 +17,42 @@ import useDebounce from "../hooks/useDebounce.hook";
 import CreateContentModal from "./modals/CreateContentModal";
 import NavbarDropdown from "./UI/NavbarDropdown";
 
+type CategoryKey = "STORY" | "TIP";
+
 export const Navbar = () => {
   const { user, setParams } = useUser();
   const [searchValue, setSearchValue] = useState("");
+  const [filters, setFilters] = useState<CategoryKey[]>([]);
+
+  console.log(filters);
 
   const searchTerm = useDebounce(searchValue);
 
   useEffect(() => {
+    const params: { name: string; value: string }[] = [];
+
     if (searchTerm) {
-      setParams([{ name: "searchTerm", value: searchTerm }]);
-    } else {
-      setParams([]);
+      params.push({ name: "searchTerm", value: searchTerm });
     }
-  }, [searchTerm, setParams]);
+
+    if (filters.length > 0) {
+      params.push({ name: "category", value: filters.join(",") });
+    }
+
+    console.log("Setting Params:", params);
+
+    setParams(params);
+  }, [searchTerm, filters, setParams]);
+
+  const categories = [
+    { key: "STORY", label: "Story" },
+    { key: "TIP", label: "Tip" },
+  ];
+
+  const handleFilterChange = (selectedKeys: SharedSelection) => {
+    const selectedArray = Array.from(selectedKeys);
+    setFilters(selectedArray as CategoryKey[]);
+  };
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky" className="bg-[#101214] mb-4">
@@ -37,7 +62,7 @@ export const Navbar = () => {
             <Logo />
           </NextLink>
         </NavbarBrand>
-
+        {/* search by content */}
         <div className="min-w-[400px] mx-auto">
           <Input
             onChange={(e) => setSearchValue(e.target.value)}
@@ -69,6 +94,21 @@ export const Navbar = () => {
               <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
             }
           />
+        </div>
+
+        {/* filter category */}
+        <div className="w-[200px]">
+          <Select
+            label="Select Categories"
+            placeholder="Select categories"
+            onSelectionChange={handleFilterChange}
+          >
+            {categories.map((category) => (
+              <SelectItem key={category.key} value={category.key}>
+                {category.label}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
       </NavbarContent>
       <NavbarBrand as="li" className=" max-w-fit">
