@@ -61,15 +61,20 @@ export interface IComment {
   updatedAt: string;
   __v: number;
 }
+export enum PaymentStatus {
+  PENDING = "PENDING",
+  PAID = "PAID",
+}
+
 
 export interface IPayment {
   _id: string;
   user: IUser;
-  paymentStatus: string;
+  paymentStatus: PaymentStatus;
   paymentAmount: number;
   transactionId: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type TQueryParams = {
