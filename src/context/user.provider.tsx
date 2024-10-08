@@ -9,6 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import { IUser, TQueryParams } from "../types";
 import { getCurrentUser } from "../services/AuthService";
 

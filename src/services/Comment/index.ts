@@ -1,15 +1,14 @@
 "use server";
-
-import envConfig from "@/src/config/envConfig";
-import axiosInstance from "@/src/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 import { FieldValues } from "react-hook-form";
+
+import axiosInstance from "@/src/lib/AxiosInstance";
 
 export const createComment = async (commentData: FieldValues) => {
   try {
     const { data } = await axiosInstance.post(
       "/comments/create-comment",
-      commentData
+      commentData,
     );
 
     revalidateTag("comments");
@@ -30,19 +29,9 @@ export const getComments = async (contentId: string) => {
     },
   };
 
-  // const res = await fetch(
-  //   `${envConfig.baseApi}/comments/${contentId}`,
-  //   fetchOptions
-  // );
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch data");
-  // }
-
-  // return res.json();
-
   const { data } = await axiosInstance.get(
     `/comments/${contentId}`,
-    fetchOptions
+    fetchOptions,
   );
 
   return data?.data;
@@ -63,12 +52,12 @@ export const deleteComment = async (commentId: string) => {
 
 export const updateComment = async (
   commentId: string,
-  updateComment: FieldValues
+  updateComment: FieldValues,
 ) => {
   try {
     const { data } = await axiosInstance.patch(
       `/comments/${commentId}`,
-      updateComment
+      updateComment,
     );
 
     revalidateTag("comments");

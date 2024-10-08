@@ -4,7 +4,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   useDisclosure,
 } from "@nextui-org/modal";
 import { ReactNode } from "react";
@@ -41,7 +40,7 @@ export default function PCModal({
         variant={buttonVariant}
         onPress={onOpen}
       >
-      {buttonText}
+        {buttonText}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>

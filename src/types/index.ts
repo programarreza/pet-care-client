@@ -1,4 +1,3 @@
-import exp from "constants";
 import { ReactNode, SVGProps } from "react";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
@@ -66,7 +65,6 @@ export enum PaymentStatus {
   PAID = "PAID",
 }
 
-
 export interface IPayment {
   _id: string;
   user: IUser;
@@ -81,4 +79,3 @@ export type TQueryParams = {
   name: string;
   value: boolean | React.Key;
 };
-

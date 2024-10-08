@@ -1,8 +1,9 @@
 "use client ";
 
-import { IInput } from "@/src/types";
 import { Input } from "@nextui-org/input";
 import { useFormContext } from "react-hook-form";
+
+import { IInput } from "@/src/types";
 
 interface IProps extends IInput {
   defaultValue?: string;
@@ -26,16 +27,16 @@ const PCInput = ({
   return (
     <Input
       {...register(name)}
+      defaultValue={defaultValue}
       errorMessage={errors[name] ? (errors[name]?.message as string) : ""}
       isInvalid={!!errors[name]}
-      variant={variant}
-      size={size}
-      required={required}
-      type={type}
       label={label}
-      placeholder={placeholder}
       name={name}
-      defaultValue={defaultValue}
+      placeholder={placeholder}
+      required={required}
+      size={size}
+      type={type}
+      variant={variant}
     />
   );
 };

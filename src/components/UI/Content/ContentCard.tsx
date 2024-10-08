@@ -1,11 +1,14 @@
 "use client";
-import { IContent } from "@/src/types";
 import { Avatar } from "@nextui-org/avatar";
 import { format } from "date-fns";
 import Image from "next/image";
+
+import { IContent } from "@/src/types";
+
 import premiumIcon from "../../../assets/premium.png";
 import CreateComment from "../Comment/createComment";
 import FollowCard from "../Follow/FollowCard";
+
 import CommentCard from "./CommentCard";
 import VoteCard from "./VoteCard";
 import ContentPaymentCard from "./ContentPaymentCard";
@@ -17,7 +20,7 @@ const ContentCard = ({ content }: { content: IContent }) => {
         {/* User info */}
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
-            <Avatar src={content?.user?.image} alt="User Avatar" />
+            <Avatar alt="User Avatar" src={content?.user?.image} />
             <div>
               <h3 className="font-bold">{content?.user?.name}</h3>
               <p className="text-xs ">
@@ -35,9 +38,9 @@ const ContentCard = ({ content }: { content: IContent }) => {
             <div className=" ml-4">
               {content?.contentType === "PREMIUM" && (
                 <Image
-                  src={premiumIcon}
                   alt="premium icon"
                   height={40}
+                  src={premiumIcon}
                   width={40}
                 />
               )}
@@ -53,11 +56,11 @@ const ContentCard = ({ content }: { content: IContent }) => {
           {content?.image && (
             <div className="bg-gray-200 w-full mt-4">
               <Image
-                src={content?.image}
                 alt={content?.content}
-                height={500}
-                width={500}
                 className="mx-auto"
+                height={500}
+                src={content?.image}
+                width={500}
               />
             </div>
           )}

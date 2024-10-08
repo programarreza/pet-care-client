@@ -10,6 +10,7 @@ export const getPayments = async () => {
   };
 
   const res = await fetch(`${envConfig.baseApi}/payments`, fetchOptions);
+
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }

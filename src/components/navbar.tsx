@@ -1,6 +1,5 @@
 "use client";
 
-import { Logo, SearchIcon } from "@/src/components/icons";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
@@ -12,8 +11,12 @@ import { Select, SelectItem } from "@nextui-org/select";
 import { SharedSelection } from "@nextui-org/system";
 import { default as Link, default as NextLink } from "next/link";
 import { useEffect, useState } from "react";
+
+import { Logo, SearchIcon } from "@/src/components/icons";
+
 import { useUser } from "../context/user.provider";
 import useDebounce from "../hooks/useDebounce.hook";
+
 import CreateContentModal from "./modals/CreateContentModal";
 import NavbarDropdown from "./UI/NavbarDropdown";
 
@@ -51,11 +54,16 @@ export const Navbar = () => {
 
   const handleFilterChange = (selectedKeys: SharedSelection) => {
     const selectedArray = Array.from(selectedKeys);
+
     setFilters(selectedArray as CategoryKey[]);
   };
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" className="bg-[#101214] mb-4">
+    <NextUINavbar
+      className="bg-[#101214] mb-4 w-full"
+      maxWidth="xl"
+      position="sticky"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -63,11 +71,9 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
         {/* search by content */}
-        <div className="min-w-[400px] mx-auto">
+        <div className="min-w-[200px] lg:min-w-[400px] mx-auto">
           <Input
-            onChange={(e) => setSearchValue(e.target.value)}
             isClearable
-            radius="lg"
             classNames={{
               label: "text-black/50 dark:text-white/90",
               input: [
@@ -90,14 +96,16 @@ export const Navbar = () => {
               ],
             }}
             placeholder="Type to search..."
+            radius="lg"
             startContent={
               <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
             }
+            onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
 
         {/* filter category */}
-        <div className="w-[200px]">
+        <div className="w-[200px] hidden md:flex">
           <Select
             label="Select Categories"
             placeholder="Select categories"
@@ -114,7 +122,7 @@ export const Navbar = () => {
       <NavbarBrand as="li" className=" max-w-fit">
         {user?.email ? (
           <div className="flex gap-4 ">
-            <div className="border rounded-lg">
+            <div className="border rounded-lg hidden md:flex">
               <CreateContentModal />
             </div>
 

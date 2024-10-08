@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+
 import PCModal from "./PCModel";
 
 interface IProps {
@@ -9,9 +10,9 @@ interface IProps {
 const AuthenticationModal = ({ buttonText }: IProps) => {
   return (
     <PCModal
-      title="Authentication"
-      buttonText={buttonText}
       buttonClassName="flex-1"
+      buttonText={buttonText}
+      title="Authentication"
     >
       <div>You are not currently logged in. Please login first to continue</div>
       <div className="flex mt-2 mb-4 gap-2">

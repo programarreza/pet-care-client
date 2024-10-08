@@ -6,7 +6,7 @@ const UsersPage = async () => {
 
   return (
     <div className="mt-4 bg-[#101214]">
-      <UserCard users={users}/>
+      <UserCard users={users} />
     </div>
   );
 };

@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
 import { IContent } from "@/src/types";
 import { useUser } from "@/src/context/user.provider";
 import { useCreatePayment } from "@/src/hooks/content.hook";
 import { useGetUserProfile } from "@/src/hooks/user.hook";
+
 import AuthenticationModal from "../../modals/AuthenticationModal";
 
 const ContentPaymentCard = ({ content }: { content: IContent }) => {
@@ -25,6 +27,7 @@ const ContentPaymentCard = ({ content }: { content: IContent }) => {
     if (loggedUser) {
       // Perform payment mutation
       const user = loggedUser?._id as string;
+
       handlePaymentMutate({ user });
     }
   };
@@ -36,8 +39,8 @@ const ContentPaymentCard = ({ content }: { content: IContent }) => {
   return (
     <div>
       <div
-        className="prose max-w-none prose-invert text-white"
         dangerouslySetInnerHTML={{ __html: displayedContent }}
+        className="prose max-w-none prose-invert text-white"
       />
 
       {content?.content?.length > 100 && (
@@ -49,6 +52,7 @@ const ContentPaymentCard = ({ content }: { content: IContent }) => {
           {loggedUser?.status === "BASIC" && (
             <button
               className="text-blue-500 hover:underline mt-2"
+              tabIndex={0}
               onClick={handlePayment}
             >
               {isPending ? (
@@ -68,6 +72,7 @@ const ContentPaymentCard = ({ content }: { content: IContent }) => {
           {loggedUser?.status === "PREMIUM" && (
             <button
               className="text-blue-500 hover:underline mt-2"
+              tabIndex={0}
               onClick={toggleExpanded}
             >
               {isExpanded ? "See Less" : "See More"}

@@ -1,11 +1,5 @@
 "use client";
 
-import { useUser } from "@/src/context/user.provider";
-import {
-  useBlockStatusChange,
-  useRoleStatusChange,
-} from "@/src/hooks/user.hook";
-import { IUser } from "@/src/types";
 import { Button } from "@nextui-org/button";
 import { Chip } from "@nextui-org/chip";
 import {
@@ -16,7 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import { any } from "zod";
+
+import { IUser } from "@/src/types";
+import {
+  useBlockStatusChange,
+  useRoleStatusChange,
+} from "@/src/hooks/user.hook";
+import { useUser } from "@/src/context/user.provider";
 
 const rows = [
   { name: "NAME", uid: "name" },
@@ -91,28 +91,28 @@ export default function UserCard({ users }: IUserCardProps) {
               {userInfo?.id === user?._id ? (
                 <Button
                   isDisabled
-                  size="sm"
                   className="bg-[#27272A] px-3 py-1 rounded-md"
+                  size="sm"
                 >
                   Not Access
                 </Button>
               ) : (
-                <div
+                <button
+                  className="cursor-pointer"
                   onClick={() =>
                     handleStatusChange(user?._id, user.isBlock as boolean)
                   }
-                  className="cursor-pointer"
                 >
                   {user?.isBlock ? (
-                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                    <span className="bg-[#27272A] px-3 py-1 rounded-md">
                       UnBlock
-                    </button>
+                    </span>
                   ) : (
-                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                    <span className="bg-[#27272A] px-3 py-1 rounded-md">
                       Block Now
-                    </button>
+                    </span>
                   )}
-                </div>
+                </button>
               )}
             </TableCell>
 
@@ -120,26 +120,26 @@ export default function UserCard({ users }: IUserCardProps) {
               {userInfo?.id === user?._id ? (
                 <Button
                   isDisabled
-                  size="sm"
                   className="bg-[#27272A] px-3 py-1 rounded-md"
+                  size="sm"
                 >
                   Not Access
                 </Button>
               ) : (
-                <div
-                  onClick={() => handleRoleChange(user?._id, user?.role)}
+                <button
                   className="cursor-pointer"
+                  onClick={() => handleRoleChange(user?._id, user?.role)}
                 >
                   {user?.role === "ADMIN" ? (
-                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                    <span className="bg-[#27272A] px-3 py-1 rounded-md">
                       Make User
-                    </button>
+                    </span>
                   ) : (
-                    <button className="bg-[#27272A] px-3 py-1 rounded-md">
+                    <span className="bg-[#27272A] px-3 py-1 rounded-md">
                       Make Admin
-                    </button>
+                    </span>
                   )}
-                </div>
+                </button>
               )}
             </TableCell>
           </TableRow>

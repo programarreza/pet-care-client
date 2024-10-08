@@ -1,4 +1,3 @@
-import { siteConfig } from "@/src/config/site";
 import {
   NavbarContent,
   NavbarItem,
@@ -8,18 +7,20 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
 
+import { siteConfig } from "@/src/config/site";
+
 const Sidebar = () => {
   return (
-    <div className="w-full h-[calc(100vh-70px)] sticky top-[70px] overflow-y-auto ">
-      <NextUINavbar maxWidth="xl" position="sticky" className="">
-        <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 w-full ">
+    <div className="h-[calc(100vh-70px)] sticky top-[70px] overflow-y-auto ">
+      <NextUINavbar className="" maxWidth="xl" position="sticky">
+        <NavbarContent className="flex flex-col gap-2 justify-start ml-2 mt-10 ">
           <ul>
             {siteConfig.navItems.map((item) => (
               <NavbarItem key={item.href} className="bg-none">
                 <NextLink
                   className={clsx(
                     linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium"
+                    "data-[active=true]:text-primary data-[active=true]:font-medium",
                   )}
                   href={item.href}
                 >

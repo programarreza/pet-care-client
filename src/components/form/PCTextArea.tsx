@@ -1,8 +1,9 @@
 "use client ";
 
-import { IInput } from "@/src/types";
 import { Textarea } from "@nextui-org/input";
 import { useFormContext, useWatch } from "react-hook-form";
+
+import { IInput } from "@/src/types";
 
 interface IProps extends IInput {}
 
@@ -19,8 +20,8 @@ const PCTextArea = ({ name, label, variant = "bordered" }: IProps) => {
       {...register(name)}
       label={label}
       minRows={6}
-      variant={variant}
       value={currentValue || ""}
+      variant={variant}
     />
   );
 };

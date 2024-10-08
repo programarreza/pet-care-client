@@ -3,7 +3,6 @@
 import { useUser } from "@/src/context/user.provider";
 import { useFollow, useUnFollow } from "@/src/hooks/user.hook";
 import { IContent } from "@/src/types";
-import { Button } from "@nextui-org/button";
 
 const FollowCard = ({ content }: { content: IContent }) => {
   const { mutate: handleFollowMutate, isPending: isPendingFollow } =
@@ -14,7 +13,7 @@ const FollowCard = ({ content }: { content: IContent }) => {
 
   // Check if the current user is following the content's user
   const isFollowing = !!content?.user?.followers?.find(
-    (follower) => follower === user?.id
+    (follower) => follower === user?.id,
   );
 
   const handleFollow = async () => {
@@ -47,18 +46,25 @@ const FollowCard = ({ content }: { content: IContent }) => {
     }
   };
 
-
   return (
     <div>
       {/* Follow/Unfollow button */}
       {user?.id !== content?.user?._id && (
         <div className="mt-4 mb-1">
           {isFollowing ? (
-            <button className="bg-gray-900 p-2 rounded-lg" onClick={handleUnfollow}>
+            <button
+              className="bg-gray-900 p-2 rounded-lg"
+              tabIndex={0}
+              onClick={handleUnfollow}
+            >
               {isPendingUnFollow ? "Unfollowing..." : "Unfollow"}
             </button>
           ) : (
-            <button className="bg-gray-900 p-2 rounded-lg" onClick={handleFollow}>
+            <button
+              className="bg-gray-900 p-2 rounded-lg"
+              tabIndex={0}
+              onClick={handleFollow}
+            >
               {isPendingFollow ? "Following.." : "Follow"}
             </button>
           )}

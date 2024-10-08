@@ -1,9 +1,10 @@
 "use server";
 
-import envConfig from "@/src/config/envConfig";
-import axiosInstance from "@/src/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 import { FieldValues } from "react-hook-form";
+
+import envConfig from "@/src/config/envConfig";
+import axiosInstance from "@/src/lib/AxiosInstance";
 
 export const updateUser = async (userId: string, userData: FieldValues) => {
   try {
@@ -30,7 +31,7 @@ export const getUserProfile = async (email: string) => {
 
     const { data } = await axiosInstance.get(
       `/users/me?email=${email}`,
-      fetchOptions
+      fetchOptions,
     );
 
     return data?.data;
@@ -50,6 +51,7 @@ export const getUsers = async () => {
   };
 
   const res = await fetch(`${envConfig.baseApi}/users`, fetchOptions);
+
   if (!res.ok) {
     throw new Error("Failed to fetch users data");
   }
@@ -89,7 +91,7 @@ export const blockStatusChange = async (userId: string, isBlock: boolean) => {
   try {
     const { data } = await axiosInstance.patch(
       `/users/block-status/${userId}`,
-      { isBlock }
+      { isBlock },
     );
 
     revalidateTag("users");

@@ -1,11 +1,12 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+
 import envConfig from "@/src/config/envConfig";
 import axiosInstance from "@/src/lib/AxiosInstance";
-import { getCurrentUser } from "../AuthService";
-import { FieldValues } from "react-hook-form";
-import { revalidateTag } from "next/cache";
 import { TQueryParams } from "@/src/types";
+
+import { getCurrentUser } from "../AuthService";
 
 export const createContent = async (formData: FormData): Promise<any> => {
   try {
@@ -16,7 +17,7 @@ export const createContent = async (formData: FormData): Promise<any> => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
+      },
     );
 
     revalidateTag("contents");
@@ -30,7 +31,7 @@ export const createContent = async (formData: FormData): Promise<any> => {
 export const getContents = async (
   page: number,
   pageSize: number,
-  args: TQueryParams[]
+  args: TQueryParams[],
 ) => {
   let fetchOptions = {};
 
@@ -55,8 +56,9 @@ export const getContents = async (
 
   const res = await fetch(
     `${envConfig.baseApi}/contents?${params.toString()}`,
-    fetchOptions
+    fetchOptions,
   );
+
   if (!res.ok) {
     throw new Error("Failed to fetch content data");
   }
@@ -83,8 +85,9 @@ export const getMyContents = async () => {
   try {
     const { data } = await axiosInstance.get(
       `/contents/my-contents?email=${user?.email}`,
-      fetchOptions
+      fetchOptions,
     );
+
     return data;
   } catch (error: any) {
     throw new Error(error.message);
@@ -95,7 +98,7 @@ export const Upvote = async (userId: string, contentId: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/upvote/${contentId}`,
-      { userId }
+      { userId },
     );
 
     revalidateTag("contents");
@@ -112,7 +115,7 @@ export const Downvote = async (userId: string, contentId: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/downvote/${contentId}`,
-      { userId }
+      { userId },
     );
 
     revalidateTag("contents");
@@ -129,7 +132,7 @@ export const StatusChange = async (contentId: string, status: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/change-status/${contentId}`,
-      { status }
+      { status },
     );
 
     revalidateTag("contents");

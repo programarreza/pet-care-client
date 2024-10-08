@@ -1,9 +1,10 @@
 "use server";
 
-import axiosInstance from "@/src/lib/AxiosInstance";
+import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
-import { jwtDecode } from "jwt-decode";
+
+import axiosInstance from "@/src/lib/AxiosInstance";
 
 export const registerUser = async (userData: FieldValues) => {
   try {

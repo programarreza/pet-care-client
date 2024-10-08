@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+
 import {
   createContent,
   CreatePayment,
@@ -12,6 +13,7 @@ import { TQueryParams } from "../types";
 
 export const useCreateContent = () => {
   const queryClient = useQueryClient();
+
   return useMutation<any, Error, FormData>({
     mutationKey: ["CREATE_CONTENT"],
     mutationFn: async (postData) => createContent(postData),
@@ -29,6 +31,7 @@ export const useCreateContent = () => {
 
 export const useUpvote = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: ["UPVOTE"],
     mutationFn: async ({
@@ -54,6 +57,7 @@ export const useUpvote = () => {
 
 export const useDownvote = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: ["DOWNVOTE"],
     mutationFn: async ({
@@ -79,6 +83,7 @@ export const useDownvote = () => {
 
 export const useStatusChange = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: ["STATUS_CHANGE"],
     mutationFn: async ({
@@ -121,7 +126,7 @@ export const useCreatePayment = () => {
 export const useGetContents = (
   page: number,
   pageSize: number,
-  params: TQueryParams[]
+  params: TQueryParams[],
 ) => {
   return useQuery({
     queryKey: ["GET_CONTENTS", page, pageSize, params],

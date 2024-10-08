@@ -8,12 +8,14 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
-import PCForm from "../../form/PCForm";
-import PCInput from "../../form/PCInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+
 import { IUser } from "@/src/types";
 import { useUpdateUser } from "@/src/hooks/user.hook";
-import { toast } from "sonner";
+
+import PCForm from "../../form/PCForm";
+import PCInput from "../../form/PCInput";
 
 interface IProps {
   user: IUser | null;
@@ -41,13 +43,13 @@ const UpdateProfile = ({ user }: IProps) => {
         onError: (error) => {
           toast.error(`Failed to update comment: ${error.message}`);
         },
-      }
+      },
     );
   };
 
   return (
     <>
-      <Button onPress={onOpen} className="p-0 m-0 w-0 h-8 bg-transparent">
+      <Button className="p-0 m-0 w-0 h-8 bg-transparent" onPress={onOpen}>
         <p>Edit Profile</p>
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -61,19 +63,19 @@ const UpdateProfile = ({ user }: IProps) => {
                 <PCForm onSubmit={onSubmit}>
                   <div className="space-y-4">
                     <PCInput
-                      name="name"
-                      label="Name"
                       defaultValue={user?.name}
+                      label="Name"
+                      name="name"
                     />
                     <PCInput
-                      name="phone"
-                      label="Phone"
                       defaultValue={user?.phone}
+                      label="Phone"
+                      name="phone"
                     />
                     <PCInput
-                      name="address"
-                      label="Address"
                       defaultValue={user?.address}
+                      label="Address"
+                      name="address"
                     />
                     <Button className="w-full" type="submit">
                       Update

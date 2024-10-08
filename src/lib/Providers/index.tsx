@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
-import { useRouter } from "next/navigation";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { Toaster } from "sonner";
+
 import UserProvider from "@/src/context/user.provider";
 
 export interface ProvidersProps {

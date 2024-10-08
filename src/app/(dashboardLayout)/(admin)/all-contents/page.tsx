@@ -1,12 +1,13 @@
 "use client";
 
+import { Spinner } from "@nextui-org/spinner";
+import { useEffect, useState } from "react";
+
 import AllContentCard from "@/src/components/UI/Content/AllContentCard";
 import { useUser } from "@/src/context/user.provider";
 import { useGetContents } from "@/src/hooks/content.hook";
 import { IContent } from "@/src/types";
 import useInfiniteScroll from "@/src/utils/infinityScroll";
-import { Spinner } from "@nextui-org/spinner";
-import { useEffect, useState } from "react";
 
 const AllContentsPage = () => {
   const { params } = useUser();

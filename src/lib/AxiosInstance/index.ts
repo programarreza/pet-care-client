@@ -1,6 +1,7 @@
-import { cookies } from "next/headers";
-import envConfig from "@/src/config/envConfig";
 import axios from "axios";
+import { cookies } from "next/headers";
+
+import envConfig from "@/src/config/envConfig";
 import { getNewAccessToken } from "@/src/services/AuthService";
 
 const axiosInstance = axios.create({
@@ -15,11 +16,10 @@ axiosInstance.interceptors.request.use(
     if (accessToken) {
       config.headers.Authorization = accessToken; // No 'Bearer', just the token
     }
-    // console.log({ accessToken });
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
@@ -39,7 +39,7 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;

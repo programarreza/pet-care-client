@@ -14,6 +14,7 @@ const ContactUsPage = () => {
 
     if (!form.current) {
       console.error("Form reference is null.");
+
       return;
     }
 
@@ -24,11 +25,12 @@ const ContactUsPage = () => {
         "service_w1bwd28",
         "template_whgfeza",
         form.current,
-        "r47p78wRwpxxE4GAT"
+        "r47p78wRwpxxE4GAT",
       );
+
       console.log(result.text);
       toast.success(
-        "Thanks for contacting us! We will get back to you shortly."
+        "Thanks for contacting us! We will get back to you shortly.",
       );
       form.current.reset();
     } catch (error) {
@@ -52,40 +54,40 @@ const ContactUsPage = () => {
           <div className="grid gap-5 w-full text-center">
             <input
               required
+              aria-label="Your Name"
               className="p-2 rounded-lg py-3 text-white bg-black"
-              type="text"
               name="user_name"
               placeholder="Name"
-              aria-label="Your Name"
+              type="text"
             />
             <input
               required
+              aria-label="Your Email"
               className="p-2 rounded-lg py-3 text-white bg-black"
-              type="email"
               name="user_email"
               placeholder="Email"
-              aria-label="Your Email"
+              type="email"
             />
           </div>
           <input
             required
+            aria-label="Subject"
             className="p-2 rounded-lg w-full mt-4 py-3 text-white bg-black"
-            type="text"
             name="user_subject"
             placeholder="Subject"
-            aria-label="Subject"
+            type="text"
           />
           <textarea
+            required
+            aria-label="Your Message"
             className="w-full my-4 py-3 px-4 rounded-lg text-white bg-black"
             name="message"
             placeholder="Your Message"
-            aria-label="Your Message"
-            required
           />
           <Button
             className="btn flex py-3 text-white bg-black hover:bg-gray-800"
-            type="submit"
             disabled={loading}
+            type="submit"
           >
             {loading ? "Sending..." : "Send Message"}
           </Button>

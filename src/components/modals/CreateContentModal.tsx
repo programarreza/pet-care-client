@@ -1,16 +1,20 @@
 "use client";
 
-import { useUser } from "@/src/context/user.provider";
-import { useCreateContent } from "@/src/hooks/content.hook";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
-import ReactQuill from "react-quill";
+
+import { useCreateContent } from "@/src/hooks/content.hook";
+import { useUser } from "@/src/context/user.provider";
+
 import "react-quill/dist/quill.snow.css";
 import PCForm from "../form/PCForm";
 import PCSelect from "../form/PCSelect";
+
 import PCModal from "./PCModel";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateContentModal = () => {
   const { user } = useUser();
@@ -54,22 +58,23 @@ const CreateContentModal = () => {
     >
       <PCForm onSubmit={onSubmit}>
         <div className="space-y-2">
+          {/* @ts-ignore */}
           <ReactQuill
+            className="mb-[50px]"
+            style={{ height: "170px" }}
             theme="snow"
             value={value}
             onChange={setValue}
-            style={{ height: "170px" }}
-            className="mb-[50px]"
           />
           <PCSelect
-            options={categoriesOptions}
             label="Select Category"
             name="category"
+            options={categoriesOptions}
           />
           <PCSelect
-            options={contentTypeOptions}
             label="Select Content Type"
             name="contentType"
+            options={contentTypeOptions}
           />
         </div>
         <div className="py-3">
