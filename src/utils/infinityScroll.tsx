@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
-const infiniteScroll = (
+const useInfiniteScroll = (
   page: number,
-  setPage: any,
+  setPage: Dispatch<SetStateAction<number>>,
   totalItems: number,
   limit: number
 ) => {
@@ -13,7 +13,7 @@ const infiniteScroll = (
         window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight
       ) {
-        setPage((prev: any) => prev + 1);
+        setPage((prev) => prev + 1);
       }
     } catch (error) {
       console.log(error);
@@ -28,4 +28,4 @@ const infiniteScroll = (
   }, [totalPageCalc, page]);
 };
 
-export default infiniteScroll;
+export default useInfiniteScroll;

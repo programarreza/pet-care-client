@@ -4,6 +4,7 @@ import AllContentCard from "@/src/components/UI/Content/AllContentCard";
 import { useUser } from "@/src/context/user.provider";
 import { useGetContents } from "@/src/hooks/content.hook";
 import { IContent } from "@/src/types";
+import useInfiniteScroll from "@/src/utils/infinityScroll";
 import infiniteScroll from "@/src/utils/infinityScroll";
 import { Spinner } from "@nextui-org/spinner";
 import { useEffect, useState } from "react";
@@ -32,7 +33,7 @@ const AllContentsPage = () => {
     }
   }, [data, page]);
 
-  infiniteScroll(page, setPage, data?.data?.meta?.total, pageSize);
+  useInfiniteScroll(page, setPage, data?.data?.meta?.total, pageSize);
 
   return (
     <div className="">
