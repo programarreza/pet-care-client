@@ -1,8 +1,9 @@
-# Next.js & NextUI Template
+# Product name: Petcare
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
-
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+## User Info
+- **admin: programarreza@gmail.com**
+- **user: reza@gmail.com**
+- **pass: 123456**
 
 ## Technologies Used
 
