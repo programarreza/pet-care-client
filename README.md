@@ -1,54 +1,86 @@
-# Product name: Petcare
+# Product Name: **Pet Care**
 
-## User Info
-- **admin: programarreza@gmail.com**
-- **user: reza@gmail.com**
-- **pass: 123456**
+## Live URL
+- **Frontend Deployment:** [Live Frontend URL](https://petcareclient.vercel.app/)
+- **Backend Deployment:** [Live Backend URL](https://petcareserver.vercel.app/)
 
-## Technologies Used
+## User Information
+- **Admin Email**: programarreza@gmail.com  
+- **User Email**: reza@gmail.com  
+- **Password**: 123456  
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## Features
 
-## How to Use
+### General Features
+- **User Authentication**: Secure login and registration using JWT.  
+- **Responsive Design**: Mobile-friendly and optimized for all devices.  
+- **Light & Dark Modes**: Seamlessly switch between light and dark themes.  
 
-### Use the template with create-next-app
+### User-Specific Features
+- **Post Creation**: Users can create posts for tips and stories.  
+- **Rich Text Editor**: Enhanced editor for creating visually appealing content.  
+- **Voting System**: Upvote or downvote posts to show engagement.  
+- **Commenting**: Users can comment on posts and engage with the community.  
+- **Premium Content**: Access exclusive content through subscription.  
 
-To create a new project based on this template using `create-next-app`, run the following command:
+### Admin-Specific Features
+- **User Management**: Admins can view, block, or unblock users.  
+- **Content Moderation**: Approve, edit, or delete posts.  
+- **Payment Management**: Oversee premium subscriptions and transactions.  
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+### Additional Features
+- **PDF Generation**: Download pet nutrition guides as PDFs.  
+- **Content Categories**: Posts are categorized into 'Tips' and 'Stories'.  
+- **Interactive Animations**: Smooth animations powered by Framer Motion.  
 
-### Install dependencies
+## Technology Stack & Packages
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+### **Backend**
+- **Node.js** & **Express.js** - Server & API management
+- **Mongoose** - Database
+- **JWT** - Authentication
+- **Cloudinary** - Image storage
+- **TypeScript** _(Optional)_ - Strong typing for maintainable code
 
-```bash
-npm install
-```
+### **Frontend**
+- **Next.js** - Frontend framework
+- **Tailwind CSS** - Styling
+- **Aamarpay/Stripe** - Payment integration
+- **TypeScript** _(Optional)_ - Strong typing
 
-### Run the development server
 
-```bash
-npm run dev
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/programarreza/pet-care-server.git
+   cd pet-care-server
+   ```
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+3. Set environment variables:
+   Create a `.env` file and add:
+4. Start the server:
+   ```bash
+   yarn start:dev
+   ```
 
-### Setup pnpm (optional)
+### **Frontend**
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/programarreza/pet-care-client.git
+   cd pet-care-client
+   ```
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+3. Set environment variables:
+   Create a `.env` file and add:
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
+4. Start the development server:
+   ```bash
+   yarn dev
+   ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
