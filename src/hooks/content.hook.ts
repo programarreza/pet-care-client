@@ -7,6 +7,7 @@ import {
   Downvote,
   getContents,
   StatusChange,
+  updateContent,
   Upvote,
 } from "../services/Content";
 import { TQueryParams } from "../types";
@@ -22,6 +23,24 @@ export const useCreateContent = () => {
 
       // Invalidate or refetch the contents after mutation success
       queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] }); // Invalidate the cache
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useUpdateContent = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation<any, Error, FormData>({
+    mutationKey: ["UPDATE_CONTENT"],
+    mutationFn: async (args) => updateContent(args),
+    onSuccess: () => {
+      toast.success("Content updated successfully!");
+
+      // Invalidate or refetch the contents after mutation success
+      queryClient.invalidateQueries({ queryKey: ["GET_CONTENTS"] });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -126,7 +145,7 @@ export const useCreatePayment = () => {
 export const useGetContents = (
   page: number,
   pageSize: number,
-  params: TQueryParams[],
+  params: TQueryParams[]
 ) => {
   return useQuery({
     queryKey: ["GET_CONTENTS", page, pageSize, params],

@@ -3,17 +3,21 @@ import { Avatar } from "@nextui-org/avatar";
 import { format } from "date-fns";
 import Image from "next/image";
 
+import { useUser } from "@/src/context/user.provider";
 import { IContent } from "@/src/types";
 
 import premiumIcon from "../../../assets/premium.png";
+import UpdateContentModal from "../../modals/UpdateContentModal";
 import CreateComment from "../Comment/createComment";
 import FollowCard from "../Follow/FollowCard";
 
 import CommentCard from "./CommentCard";
-import VoteCard from "./VoteCard";
 import ContentPaymentCard from "./ContentPaymentCard";
+import VoteCard from "./VoteCard";
 
 const ContentCard = ({ content }: { content: IContent }) => {
+  const { user } = useUser();
+
   return (
     <div className="text-white shadow-lg  overflow-hidden mb-6 bg-[#101214] rounded-lg">
       <div className="px-4 py-2">
@@ -30,7 +34,16 @@ const ContentCard = ({ content }: { content: IContent }) => {
           </div>
 
           <div className="text-sm">
-            <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p>
+            <div className="flex gap-2">
+              <div>
+                {user?.id === content.user._id && (
+                  <>
+                    <UpdateContentModal content={content} />
+                  </>
+                )}
+              </div>
+              <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p>
+            </div>
 
             {/* follow/unFollow */}
             <FollowCard content={content} />

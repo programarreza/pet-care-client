@@ -17,7 +17,27 @@ export const createContent = async (formData: FormData): Promise<any> => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      },
+      }
+    );
+
+    revalidateTag("contents");
+
+    return data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const updateContent = async (args: any): Promise<any> => {
+  try {
+    const { data } = await axiosInstance.patch(
+      `/contents/${args.id}/update`,
+      args.contentData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
 
     revalidateTag("contents");
@@ -31,7 +51,7 @@ export const createContent = async (formData: FormData): Promise<any> => {
 export const getContents = async (
   page: number,
   pageSize: number,
-  args: TQueryParams[],
+  args: TQueryParams[]
 ) => {
   let fetchOptions = {};
 
@@ -56,7 +76,7 @@ export const getContents = async (
 
   const res = await fetch(
     `${envConfig.baseApi}/contents?${params.toString()}`,
-    fetchOptions,
+    fetchOptions
   );
 
   if (!res.ok) {
@@ -85,7 +105,7 @@ export const getMyContents = async () => {
   try {
     const { data } = await axiosInstance.get(
       `/contents/my-contents?email=${user?.email}`,
-      fetchOptions,
+      fetchOptions
     );
 
     return data;
@@ -98,7 +118,7 @@ export const Upvote = async (userId: string, contentId: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/upvote/${contentId}`,
-      { userId },
+      { userId }
     );
 
     revalidateTag("contents");
@@ -115,7 +135,7 @@ export const Downvote = async (userId: string, contentId: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/downvote/${contentId}`,
-      { userId },
+      { userId }
     );
 
     revalidateTag("contents");
@@ -132,7 +152,7 @@ export const StatusChange = async (contentId: string, status: string) => {
   try {
     const { data } = await axiosInstance.patch(
       `/contents/change-status/${contentId}`,
-      { status },
+      { status }
     );
 
     revalidateTag("contents");

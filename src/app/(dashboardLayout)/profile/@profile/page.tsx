@@ -15,8 +15,6 @@ const Profile = () => {
   const [currentPage, setCurrentPage] = useState("contents");
   const { data: userInfo } = useGetUserProfile(user?.email as string);
 
-  console.log(userInfo);
-
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
   };
