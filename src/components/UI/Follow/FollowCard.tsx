@@ -13,7 +13,7 @@ const FollowCard = ({ content }: { content: IContent }) => {
 
   // Check if the current user is following the content's user
   const isFollowing = !!content?.user?.followers?.find(
-    (follower) => follower === user?.id,
+    (follower) => follower === user?.id
   );
 
   const handleFollow = async () => {
@@ -24,8 +24,6 @@ const FollowCard = ({ content }: { content: IContent }) => {
       };
 
       handleFollowMutate(followData);
-
-      console.log("handleFollow", followData);
     } catch (error) {
       console.error("Failed to follow:", error);
     }

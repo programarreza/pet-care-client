@@ -1,5 +1,6 @@
 "use client";
 
+import { Tooltip } from "@nextui-org/tooltip";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { useUser } from "@/src/context/user.provider";
@@ -40,26 +41,53 @@ const CreateComment = ({ contentId }: { contentId: string }) => {
                 // disabled={true}
               />
             </div>
-
-            <button
-              className="p-2 mr-3 absolute right-0 top-0 my-3 w-fit rounded-md hover:bg-default-900 font-semibold text-black bg-gray-500"
-              type="submit"
-            >
-              <svg
-                className="size-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+            {user ? (
+              <>
+                <button
+                  className="p-2 mr-3 absolute right-0 top-0 my-3 w-fit rounded-md hover:bg-default-900 font-semibold text-black bg-gray-500"
+                  type="submit"
+                >
+                  <svg
+                    className="size-6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </>
+            ) : (
+              <>
+                <Tooltip content="Please login or register">
+                  <button
+                    disabled
+                    className="p-2 mr-3 absolute right-0 top-0 my-3 w-fit rounded-md hover:bg-default-900 font-semibold text-black bg-gray-500"
+                  >
+                    <svg
+                      className="size-6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </Tooltip>
+              </>
+            )}
           </div>
         </form>
       </div>

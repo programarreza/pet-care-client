@@ -7,6 +7,7 @@ import { useUser } from "@/src/context/user.provider";
 import { IContent } from "@/src/types";
 
 import premiumIcon from "../../../assets/premium.png";
+import AuthenticationModal from "../../modals/AuthenticationModal";
 import UpdateContentModal from "../../modals/UpdateContentModal";
 import CreateComment from "../Comment/createComment";
 import FollowCard from "../Follow/FollowCard";
@@ -42,11 +43,17 @@ const ContentCard = ({ content }: { content: IContent }) => {
                   </>
                 )}
               </div>
-              <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p>
+              {/* <p className="bg-gray-900 p-1 rounded-lg">{content?.status}</p> */}
             </div>
 
             {/* follow/unFollow */}
-            <FollowCard content={content} />
+            {!user ? (
+              <AuthenticationModal buttonText="Follow" />
+            ) : (
+              <>
+                <FollowCard content={content} />
+              </>
+            )}
 
             <div className=" ml-4">
               {content?.contentType === "PREMIUM" && (
